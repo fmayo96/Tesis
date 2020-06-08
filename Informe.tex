@@ -1,0 +1,619 @@
+%% LyX 2.3.4.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+\usepackage{textcomp}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{babel}
+\begin{document}
+
+\section{Dissipative charging of a quantum battery (F. Barra)}
+
+En este paper \cite{key-1}se estudia un método para cargar una batería
+cuántica utilizando el método de interacciones repetidas. En este
+caso la batería es un sistema con estado $\rho_{s}$ y hamiltoniano
+$H_{s}$. Además de la batería se cuenta con sistemas auxiliares (en
+principio tantos como se quiera, no aclara) con hamiltoniano $H_{A}$
+que se encuentran en estados térmicos a temperatura $\beta$: $\omega_{\beta}(H_{A})$.
+El proceso de carga consiste en acoplar al sistema $\rho_{s}$ con
+uno de los sistemas auxiliares mediante una interacción $V$ por un
+tiempo $\tau$ y luego desconectarlo, y así sucesivamente con los
+distintos sistemas auxiliares. Cada sistema auxiliar usado se descarta,
+de este modo siempre se conecta la batería a un sistema auxiliar en
+estado térmico. La evolución de la batería en cada paso es:
+
+\[
+\rho_{S}((n+1)\tau)=\mathcal{E}(\rho_{S}(n\tau))=Tr_{A}(U(\rho_{S}(n\tau)\otimes\omega_{\beta}(H_{A}))U^{\dagger})
+\]
+donde $U=e^{i\tau(H_{s}+H_{A}+V)}$.
+
+El calor, trabajo, y producción de entropía de cada paso son:
+
+\[
+Q_{n}=-Tr_{A}[H_{A}(\rho_{A}(n\tau))-\omega_{\beta}(H_{A}))]
+\]
+
+\[
+W_{n}=Tr[(H_{S}+H_{A})(\rho_{tot}(n\tau)-\rho_{tot}([n-1]\tau))]
+\]
+
+\[
+\Sigma_{n}=D(\rho_{tot}(n\tau)\vert\vert\rho_{s}(n\tau)\otimes\omega_{\beta}(H_{A}))\ge0
+\]
+
+El calor es (menos) el cambio de energía del baño térmico. El trabajo
+externo es el cambio de la energía total (baño más batería), y es
+producto de prender y apagar la interacción. 
+
+La evolución queda entonces definida concatenando los mapas$(\mathcal{\mathcal{E}\circ E\circ E}...$).
+El mapa $\mathcal{E}$ se construye de manera que tenga un único estado
+estacionario $\pi=\mathcal{E}(\pi).$ Concatenando muchas veces estos
+mapas se llega al estado estacionario partiendo de cualquier estado
+inicial, es decir $lim_{n\mathcal{\rightarrow}\infty}\mathcal{E}^{n}(\rho_{S}(0))=\pi$.
+Si la acción de $\mathcal{E}$ sobre $\pi$ da producción de entropía
+0, $\pi$ es un estado de equilibrio. Estos son los estados a los
+que le interesa llegar, ya que en este caso cuando se llega al estado
+de equilibrio se puede continuar repitiendo el proceso con costo de
+trabajo 0, lo que resulta útil para mantener a la batería en el estado
+de equilibrio, corrigiendo pequeñas desviaciones de ese estado. 
+
+La evolución unitaria $U$ de un mapa con equilibrio satisface 
+\[
+[U,H_{0}+H_{A}]=0
+\]
+
+Donde $H_{0}$ es un operador del espacio de Hilbert y el estado de
+equilibrio es $\pi=e^{-\beta H_{0}}/Tr(e^{-\beta H_{0}})=\omega_{\beta}(H_{0})$.
+El calor, trabajo y producción de entropía de cada paso se puede escribir
+como:
+
+\[
+Q_{n}=Tr(H_{0}\{\rho_{S}(n\tau)-\rho_{S}[(n-1)\tau]\})
+\]
+
+\[
+W_{n}=Tr((H_{S}-H_{0})\{\rho_{S}(n\tau)-\rho_{S}[(n-1)\tau]\})
+\]
+
+\[
+\Sigma_{n}=D(\rho_{S}[(n-1)\tau]\vert\vert\pi)-D(\rho_{S}(n\tau)\vert\vert\pi)\ge0
+\]
+
+Se puede ver que cuando se llega al estado estacionario las tres magnitudes
+se vuelven 0. Y en el caso particular en el que $H_{0}=H_{S}$ se
+tiene un proceso de relajación donde el estado final es un estado
+térmico con la misma temperatura que los sistemas auxiliares y que
+el costo de trabajo total es 0.
+
+Si el operador $H_{0}$ es distinto a $H_{S}$ se puede llegar a un
+estado de equilibrio activo, que es la situación buscada para las
+baterías, donde se quiere un estado final ``cargado''.
+
+\section*{Protocolo para estado de equilibrio activo.}
+
+Un proceso de equilibrio interesante es el dado por interacciones
+del tipo $V=\sum_{\alpha}S_{\alpha}\otimes A_{\alpha}$ donde los
+operadores $S_{\alpha}$ y $A_{\alpha}$ satisfacen $[H_{S},S_{\alpha}]=\lambda_{\alpha}S_{\alpha}$
+y $[H_{A},A_{\alpha}]=\lambda_{\alpha}A_{\alpha}.$ En este caso se
+tiene $[V,-H_{S}+H_{A}]=0$, por lo tanto $H_{0}=-H_{s},$ entonces
+el estado de equilibrio es $\pi=e^{\beta H_{S}}/Tr(e^{\beta H_{S}}),$
+que es un estado activo, y en el caso de un espectro de energía simétrico
+con respecto a un valor $\overline{E}$ se satura la cota para la
+ergotropía de la batería \cite{key-4}. En este caso la batería y
+los sistemas auxiliares tienen el mismo espectro de frecuencias de
+Bohr $\{\lambda_{\alpha}\}$, esta condición es poco probable, por
+lo tanto el protocolo debe ser diseñado con sistemas auxiliares que
+sean copias de la batería.
+
+\section{Ecuación maestra para equilibrio activo.}
+
+Para construir las ecuación maestra que lleve al sistema a un estado
+de equilibrio activo usé el método de interacciones repetidas \cite{key-2}
+modificando la interacción entre el sistema y el baño térmico. En
+este trabajo se concentran en interacciones que satisfagan balance
+detallado local, es decir en nuestro caso $[V,H_{S}+H_{A}]=0$. Para
+llevar la batería al estado de equilibrio activo $\pi=\omega_{\text{\ensuremath{\beta} }}(-H_{S})$
+vimos que debía satisfacerse la condición $[V,-H_{S}+H_{A}]=0$, por
+lo tanto debemos modificar la interacción para que esto se cumpla.
+Basándonos en el protocolo de Barra proponemos una interacción 
+
+\begin{equation}
+V=\sum_{k}g_{k}(L_{k}^{\text{\ensuremath{\dagger}}}A_{k}^{\dagger}\,+\,L_{k}\,A_{k})
+\end{equation}
+
+con $[H_{S},L_{k}]=-\omega_{k}L_{k}$ y $[H_{A},A_{k}]=-\omega_{k}A_{k}$,
+donde también pedimos que la batería y los sistemas auxiliares tengan
+el mismo espectro de frecuencias de Bohr. Con esta interacción se
+cumple $[V,-H_{S}+H_{A}]=0$.
+
+Para llegar a la ecuación maestra utilizando el modelo de interacciones
+repetidas se parte de la evolución del estado en un paso, es decir
+de la interacción del sistema S con un sistema auxiliar A durante
+un tiempo $\tau$ :
+
+\begin{equation}
+\rho_{s}((n+1)\tau)=Tr_{A}[e^{-iH_{tot}\tau}(\rho_{s}(n\tau)\otimes\rho_{A})e^{iH_{tot}\tau}]
+\end{equation}
+
+con 
+\begin{equation}
+H_{tot}=H_{S}+H_{A}+\frac{1}{\sqrt{\tau}}V
+\end{equation}
+
+Expandiendo (1) en potencias de $\tau$ se obtiene: 
+
+\begin{equation}
+\dfrac{d\rho_{S}}{dt}=-i[H_{S},\rho_{S}]\,+\,D(\rho_{S})
+\end{equation}
+
+donde el disipador es 
+\begin{equation}
+D(\rho_{s})=-\frac{1}{2}Tr_{A}[V,[V,\rho_{s}\otimes\rho_{A}]]
+\end{equation}
+
+Reemplazando la interacción (1) en la ecuación (5), y teniendo en
+cuenta que $\langle A_{k}A_{l}\rangle=\langle A_{k}^{\dagger}A_{l}^{\dagger}\rangle=0$
+y que $\langle A_{k}^{\dagger}A_{l}\rangle\propto\delta_{kl}$ se
+obtiene:
+
+\begin{equation}
+D(\text{\ensuremath{\rho_{S}}})=\sum_{k}(\gamma_{k}^{+}\mathcal{L}[L_{k},\rho_{S}]+\gamma_{k}^{-}\mathcal{L}[L_{k}^{\dagger},\rho_{S}])
+\end{equation}
+
+Donde $\gamma_{k}^{+}=g_{k}^{2}\langle A_{k}^{\dagger}A_{k}\rangle$y
+$\gamma_{k}^{-}=g_{k}^{2}\langle A_{k}A_{k}^{\dagger}\rangle.$ Se
+llega al mismo resultado que en su paper intercambiando $\gamma_{k}^{+}$y
+$\gamma_{k}^{-}.$
+
+\subsection*{Calor y Trabajo.}
+
+En cada paso, la variación de energía en la batería y el sistema auxiliar
+está dado por:
+
+\begin{equation}
+\Delta H_{S}=-\frac{\tau}{2}\langle[V,[V,H_{S}]]\rangle
+\end{equation}
+
+\begin{equation}
+\Delta H_{A}=-\frac{\tau}{2}\langle[V,[V,H_{A}]]\rangle
+\end{equation}
+
+Reemplazando (1) en (7) y (8), y definiendo el calor como $\frac{-\Delta H_{A}}{\tau}$
+se obtiene:
+
+\begin{equation}
+\frac{d\langle H_{S}\rangle}{dt}=\sum_{k}\omega_{k}(\gamma_{k}^{-}\langle L_{k}L_{k}^{\dagger}\rangle-\gamma_{k}^{+}\langle L_{k}^{\dagger}L_{k}\rangle)
+\end{equation}
+
+\begin{equation}
+\dot{Q}=\sum_{k}\omega_{k}(\gamma_{k}^{+}\langle L_{k}^{\dagger}L_{k}\rangle-\gamma_{k}^{-}\langle L_{k}L_{k}^{\dagger}\rangle)
+\end{equation}
+
+Se puede ver entonces que:
+
+\[
+\frac{d\langle H_{S}\rangle}{dt}=-\dot{Q}
+\]
+
+Utilizando que $\frac{d\langle H_{S}\rangle}{dt}=\dot{Q}+\dot{W}$
+encontramos la variación en el trabajo
+
+\begin{equation}
+\dot{W}=-2\dot{Q}
+\end{equation}
+
+Si ahora permitimos que el sistema esté compuesto por partes que interactúan
+entre sí y sólo una de las partes interactúe con el baño térmico el
+trabajo externo va a ser distinto. El calor va a ser igual ya que
+el hamiltoniano de los sistemas auxiliares seguirá siendo el mismo.
+Pero ahora la euación (9) se transforma en 
+
+\[
+\frac{d\langle H_{S}\rangle}{dt}=\sum_{k}\omega_{k}(\gamma_{k}^{-}\langle L_{k}L_{k}^{\dagger}\rangle-\gamma_{k}^{+}\langle L_{k}^{\dagger}L_{k}\rangle)+\frac{1}{2}\sum_{k}(\gamma_{k}^{+}\langle[L_{k}^{\dagger},V]L_{k}-L_{k}^{\dagger}[L_{k},V]\rangle+\gamma_{k}^{-}\langle[L_{k},V]L_{k}^{\dagger}-L_{k}[L_{k}^{\dagger},V]\rangle)
+\]
+
+Donde V es la interacción entre las partes del sistema. La primer
+sumatoria es igual a $-\dot{Q}$ por lo tanto la segunda debe ser
+igual a $\dot{W}+2\dot{Q}$ para que se cumpla que $\frac{d\langle H_{S}\rangle}{dt}=\dot{Q}+\dot{W}$,
+entonces se obtiene
+
+\begin{equation}
+\dot{W}=\frac{1}{2}\sum_{k}(\gamma_{k}^{+}\langle[L_{k}^{\dagger},V]L_{k}-L_{k}^{\dagger}[L_{k},V]\rangle+\gamma_{k}^{-}\langle[L_{k},V]L_{k}^{\dagger}-L_{k}[L_{k}^{\dagger},V]\rangle)-2\dot{Q}
+\end{equation}
+
+En el caso en que $V=0$ se recupera la ecuación (11).
+
+\section*{Ejemplo Qubit}
+
+En \cite{key-1} Barra muestra el ejemplo de una batería compuesta
+por un qubit. El hamiltoniano de la batería es $H_{S}=\frac{h}{2}\sigma_{S}^{z}$
+y el de los sistemas auxiliares $H_{A}=\frac{h}{2}\sigma_{A}^{z}$con
+$h\ge0$. La interacción entre los sistemas es 
+
+\begin{equation}
+V=a(\sigma_{S}^{+}\sigma_{A}^{+}+\sigma_{S}^{-}\sigma_{A}^{-})
+\end{equation}
+
+En esta situación
+
+\begin{equation}
+\gamma^{\pm}=a^{2}\frac{e^{\pm\beta h/2}}{2\,cosh(\beta h/2)}
+\end{equation}
+
+Por lo tanto la ecuación maestra (4) queda 
+
+\begin{equation}
+\frac{d\rho_{S}}{dt}=-i\frac{h}{2}[\sigma_{S}^{z},\rho_{S}]\,+\,\frac{a^{2}}{2\,cosh(\beta h/2)}\left\{ e^{\beta h/2}\mathcal{L}[\sigma^{-},\rho_{S}]\,+\,e^{-\beta h/2}\mathcal{L}[\sigma^{+},\text{\ensuremath{\rho_{S}}}]\right\} 
+\end{equation}
+
+Mientras que las expresiones para las derivadas temporales del trabajo
+y el calor son:
+
+\begin{equation}
+\dot{Q}=\frac{-a^{2}h}{2\,cosh(\beta h/2)}\left\{ e^{\beta h/2}\langle\sigma^{+}\sigma^{-}\rangle-e^{-\beta h/2}\langle\sigma^{-}\sigma^{+}\rangle\right\} 
+\end{equation}
+
+\begin{equation}
+\dot{W}=\frac{-a^{2}h}{cosh(\beta h/2)}\left\{ e^{-\beta h/2}\langle\sigma^{-}\sigma^{+}\rangle-e^{\beta h/2}\langle\sigma^{+}\sigma^{-}\rangle\right\} 
+\end{equation}
+
+Donde los promedios están tomados sobre el estado de la batería. 
+
+Barra resuelve el problema numéricamente con los siguientes parámetros:
+$\tau=0.1$, $a=\sqrt{10}$, $h=\text{1.5 }$y $\beta=1$. Partiendo
+de la batería en estado térmico llega finalmente al estado de equilibrio,
+que en este caso consiste en una inversión de población. Una vez llegado
+al estado estacionario, tanto el calor como el trabajo correspondientes
+a cada paso se vuelven 0, como se puede ver en la Figura 1. El estado
+inicial es 
+
+\begin{equation}
+\rho_{s}=\frac{e^{-\beta H_{s}}}{Z}
+\end{equation}
+
+\includegraphics[scale=0.7]{DissipativeME/Barra2019}
+
+Resolviendo la ecuación maestra (14) numéricamente se obtienen las
+curvas que se muestran en la Figura 2(a) para las poblaciones de los
+dos niveles, y con las ecuaciones (16) y (17) se obtienen las curvas
+de la Figura 2(b) \includegraphics[scale=0.7]{DissipativeME/qubit}
+
+Se puede ver que en ambos casos los resultados son muy similares,
+aunque en el caso de la ecuación maestra, donde el tiempo de interacción
+entre la batería y cada sistema auxiliar tiende a 0, la convergencia
+al estado de equilibrio se da en un tiempo menor. En ambos casos el
+trabajo y el calor correspondientes a cada ``paso'' de las interacciones
+repetidas se vuelve 0 cuando se alcanza el estado estacionario. El
+calor y el trabajo por ``paso'' son mayores en el segundo caso.
+Por lo tanto el segundo proceso carga la batería más rápido, pero
+requiere un $\textit{rate}$ mayor de trabajo externo. 
+
+\section*{Ejemplo 2 Qubits:}
+
+En este caso hay dos qubits, pero sólo uno de ellos interactúa con
+el baño térmico. Estudiamos dos casos, con dos interacciones diferentes
+entre qubits. 
+
+\begin{equation}
+V=\sigma_{1}^{+}\sigma_{2}^{+}+\sigma_{1}^{-}\sigma_{2}^{-}
+\end{equation}
+
+\begin{equation}
+V\text{\textasciiacute}=\sigma_{1}^{+}\sigma_{2}^{-}+\sigma_{1}^{-}\sigma_{2}^{+}
+\end{equation}
+
+Entonces el Hamiltoniano del sistema es 
+\begin{equation}
+H=\frac{h}{2}\sigma_{1}^{z}+\frac{h}{2}\sigma_{2}^{z}+V
+\end{equation}
+
+El qubit 1 interactua con el baño térmico de la misma forma que en
+el ejemplo anterior. La ecuación maestra resultante es:
+
+\begin{equation}
+\frac{d\rho}{dt}=-i[H,\rho]+D_{1}(\rho)
+\end{equation}
+
+Donde el disipador es el mismo que en (15), cambiando $\sigma^{\pm}$
+por $\sigma_{1}^{\pm}$.
+
+Resolvimos numéricamente para las dos interacciones (19) y (20) utilizando
+como estado inicial un estado producto donde cada qubit se encuentra
+en un estado térmico (18). 
+
+La evolución de la energía del sistema (por qubit) se muestra en la
+Figura 3, para cada una de las interacciones. Se toma como 0 de energía
+de cada caso a la energía inicial.
+
+\includegraphics[scale=0.7]{DissipativeME/2qubits3interactions}
+
+Se puede ver que la interacción (19) hace que el sistema llege a una
+energía más baja que en el caso de no haber interacciones, por lo
+tanto no resulta de interés para un proceso de carga de batería. Mientras
+que la interacción (20) lleva al sistema a una energía final que es
+el doble que en el caso sin interacción, aunque en un tiempo mucho
+mayor (del órden de 10 veces más lento). A pesar de ser más lento,
+es interesante ver que en el tiempo que le toma al sistema sin interacción
+en realizar una carga completa, el sistema con la interacción (20)
+alcanza la misma energía. Por lo tanto, si se desea cargar la batería
+en un tiempo corto, los dos procesos le dan el mismo resultado, pero
+si se dispone de más tiempo, se puede alcanzar una energía mayor con
+el segundo caso.
+
+\includegraphics[scale=0.7]{DissipativeME/intcvsnointa=1}
+
+En esta Figura se muestran las energías del sistema para dos casos.
+Uno donde no hay interacción entre los qubits y se acopla cada uno
+a un baño térmico diferente (el mismo proceso que en el ejemplo de
+un qubit), y otro donde los dos qubits tienen una interacción de la
+forma (20) y sólamente el qubit 1 se encuentra acoplado al baño térmico. 
+
+En ambos casos se parte del mismo estado inicial, que es el estado
+producto de los dos qubits en estado térmico con $\beta$=1 y se llega
+al mismo estado final, el estado producto de los dos qubits en estado
+térmico con $\beta=$-1. En la Figura se muestra la energía del sistema
+restándole la energía inicial. Como el estado inicial es térmico,
+esta magnitud es la ergotropía $\mathcal{W}$. 
+
+En {[}1{]} Barra define la eficiencia del proceso de carga como el
+cociente de la ergotroía sobre el trabajo externo.
+\begin{equation}
+\eta=\frac{\mathcal{W}}{W}=1-\frac{\vert Q\vert}{W}
+\end{equation}
+
+Para ambos casos se obtiene una eficiencia $\eta=1/2$. 
+
+Si ahora modificamos la interacción (20) agregándole un factor de
+proporcionalidad 
+
+\begin{equation}
+V\text{\textasciiacute}=\epsilon(\sigma_{1}^{+}\sigma_{2}^{-}+\sigma_{1}^{-}\sigma_{2}^{+})
+\end{equation}
+
+se puede acelerar el proceso de carga, aumentando el rate de trabajo,
+pero manteniendo el costo total de trabajo externo. En la siguiente
+Figura se muestra el proceso de carga sin interacción y con interacción
+para $\epsilon=10.$
+
+\includegraphics[scale=0.7]{DissipativeME/IntvsNoint}
+
+\section*{Correlaciones y potencia.}
+
+Otro caso de interés es en el caso sin interacción comparar qué sucede
+si se usa un estado inicial que sea entrelazado en vez de un estado
+producto, ya que en varios trabajos se vio que se puede mejorar la
+potencia de la batería al incluir procesos que generen entrelazamiento.
+Para esto se utilizó el estado inicial:
+
+\[
+\rho_{E}=\frac{e^{-\beta H_{S}}}{Z}\vert00\rangle\langle00\vert+\frac{1}{Z}\vert00\rangle\langle11\vert+\frac{1}{Z}\vert11\rangle\langle00\vert+\frac{e^{-\beta H_{S}}}{Z}\vert11\rangle\langle11\vert
+\]
+
+Las matrices densidad reducidas de cada qubit dan lo mismo que para
+el estado producto. 
+
+En este caso la energía del sistema se comporta exactamente igual
+que en el caso del estado producto. Por lo tanto no se obtiene ninguna
+ventaja debido al entrelazamiento. 
+
+Para entender un poco por qué no se encuentra ventaja cuántica se
+me ocurrió analizar el problema como lo hacen en \cite{key-3}. Lo
+que hacen es estudiar la velocidad de evolución del sistema y la longitud
+de la trayectoria que debe recorrer hasta llegar al estado final.
+Se usa como medida de distancia la distancia angular de Bures. Debido
+a que en general se puede dar una evolución entre estados distintos
+pero con la misma energía, esta medida puede resultar engañosa, ya
+que la velocidad de evolución es distinta de 0, pero la potencia de
+carga de la batería es 0. Por lo tanto modifican la medida y usan
+la distancia angular de Bures pero para los estados defasados en la
+base de energías. Con este procedimiento encontramos los siguientes
+resultados.
+
+\includegraphics[scale=0.7]{DissipativeME/DistancevsSpeed}
+
+El estado inicialmente entrelazado comienza con una velocidad mucho
+mayor que el estado separable, lo que muestra una ``ventaja cuántica''
+cuando hay presencia de entrelazamiento, pero a su vez es un estado
+que se encuentra a una distancia mayor del estado de equilibrio. Debido
+a que la ``trayectoria'' que debe seguir el estado entrelazado es
+más larga que la del estado separable esta ventaja se pierde y se
+obtiene que los dos estados llegan al equilibrio en simultáneo. En
+la siguiente figura se muestra la distancia al equilibrio en función
+de tiempo, y se puede observar cómo los dos estados iniciales convergen.
+
+\includegraphics[scale=0.7]{DissipativeME/Bures}
+
+Así se entiende mejor por qué no hay ventaja en el caso del estado
+entrelazado. 
+
+Al ver esto me puse a buscar ejemplos de mejora en potencia debido
+al entrelazamiento y vi que nadie lo plantea usando un estado inicial
+entrelazado. En todos los casos parten de un estado separable y llegan
+a otro estado separable, el entrelazamiento aparece cuando se usan
+interacciones globales en los sistemas. Por lo tanto usé el siguiente
+sistema para ver si aparecía la mejora en potencia debido al entrelazamiento:
+Dos qubits (1 y 2), cada uno de ellos acoplado a un baño térmico distinto
+de la misma forma que en los ejemplos anteriores. El hamiltoniano
+del sistema es el de la ecuación (21), en uno de los casos la interacción
+es 0, es decir que los qubits evolucionan independientemente, y en
+el otro la interacción es la de la ecuación (20). 
+
+En ambos casos los sistemas empiezan en el estado
+\begin{equation}
+\rho=(\frac{e^{-\beta h/2}}{Z}\vert0\rangle\langle0\vert_{1}+\frac{e^{\beta h/2}}{Z}\vert1\rangle\langle1\vert_{1})\otimes(\frac{e^{-\beta h/2}}{Z}\vert0\rangle\langle0\vert_{2}+\frac{e^{\beta h/2}}{Z}\vert1\rangle\langle1\vert_{2})
+\end{equation}
+
+y terminan en el estado 
+
+\begin{equation}
+\rho=(\frac{e^{\beta h/2}}{Z}\vert0\rangle\langle0\vert_{1}+\frac{e^{-\beta h/2}}{Z}\vert1\rangle\langle1\vert_{1})\otimes(\frac{e^{\beta h/2}}{Z}\vert0\rangle\langle0\vert_{2}+\frac{e^{-\beta h/2}}{Z}\vert1\rangle\langle1\vert_{2})
+\end{equation}
+
+El resultado para energía calor y trabajo de los dos sistemas es el
+siguiente:
+
+\includegraphics[scale=0.7]{DissipativeME/Intvsnoint2baths}
+
+Los dos casos evolucionan de la misma forma, no se encuentra ventaja
+debido a haber introducido una interacción global. Por lo tanto se
+calculó la información mutua de el estado en el sistema con interacción
+para saber que tan entrelazado estuvo el sistema durante la evolución,
+y se obtuvo que la información mutua valió 0 durante toda la evolución,
+por lo tanto no hubo entrelazamiento. Al no haber habido entrelazamiento,
+la interacción usada no genera mejoras en la potencia de carga de
+la batería. En los trabajos anteriores se obtiene la mejora en potencia
+cuando se genera entrelazamiento durante el período de carga, por
+lo tanto para ver esta mejora hay que modificar la interacción del
+sistema para que se genere entrelazamiento entre los dos qubits.
+
+Hasta acá se explicó (o se intentó explicar) por qué no se ven los
+efectos del entrelazamiento en los dos ejemplos trabajados. 
+
+\section*{Dos qubits acoplados al baño térmico con una interacción que genera
+entrelazamiento.}
+
+La idea en este caso es que la batería formada por dos qubits (igual
+que la anterior) se acopla a un baño térmico también formado por dos
+qubits, con el mismo hamiltoniano que la batería, mediante dos tipos
+de interacciones. La primera acopla a cada qubit de la batería con
+uno de los qubits del baño y por lo tanto no genera entrelazamiento
+entre los constituyentes de la batería. La segunda interacción acopla
+a los cuatro qubits entre sí. Esta interacción es
+
+\begin{equation}
+V=\epsilon(\sigma_{B1}^{+}\otimes\sigma_{B2}^{+}\otimes\sigma_{A1}^{+}\otimes\sigma_{A2}^{+}+\sigma_{B1}^{-}\otimes\sigma_{B2}^{-}\otimes\sigma_{A1}^{-}\otimes\sigma_{A2}^{-})
+\end{equation}
+
+Mientras que la interacción que mantiene separable al estado de la
+batería es 
+
+\begin{equation}
+V=\epsilon(\sigma_{B1}^{+}\otimes\sigma_{A1}^{+}+\sigma_{B1}^{-}\otimes\sigma_{A1}^{-}+\sigma_{B2}^{+}\otimes\sigma_{A2}^{+}+\sigma_{B2}^{-}\otimes\sigma_{A2}^{-})
+\end{equation}
+
+Donde B1 y B2 se refieren a los qubits de la batería y A1 y A2 a los
+del baño térmico. Utilizando las ecuaciones (4) y (5) se obtienen
+las ecuaciones maestras. Con estas dos interacciones, la evolución
+de la batería llega al mismo estado de equilibrio (26). A continuación
+se muestra la evolución de la energía de la batería para ambas interacciones
+partiendo del mismo estado inicial (25).
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/Energiapng}
+
+Se puede observar que el sistema que genera entrelazamiento durante
+el proceso evoluciona más lentamente que el que se mantiene separable.
+Esto es contrario a lo que se espera, ya que se ha mostrado que la
+generación de entrelazamiento mejora la potencia de la batería. Para
+verificar que se haya generado entrelazamiento durante el proceso
+se calculó la información mutua del sistema a lo largo del proceso,
+y se puede observar que efectivamente se generó entrelazamiento.
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/Informacionmutua}
+
+Por lo tanto en este caso se concluye que la generación de entrelazamiento
+resultó perjudicial para la potencia de carga de la batería. Repitiendo
+el análisis en función de la distancia de Bures y la evolución se
+encontró lo siguiente
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/Distance}
+
+Se ve que la evolución que mantiene al estado de la batería separable
+en todo momento recorre una distancia mayor, pero igualmente llega
+antes al estado de equilibrio. 
+
+Me di cuenta que si vemos la norma operador de las dos interacciones,
+la separable vale el doble que la interacción que entrelaza. Por lo
+tanto, para que las dos interacciones sean comparables, multiplico
+por dos a la interacción (27). Este cambio se ve reflejado en los
+rates de disipación de la ecuación maestra para la interacción que
+genera entrelazamiento, y se obtiene un nuevo resultado donde ahora
+sí la batería que tiene entrelazamiento es la que carga más rápido.
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/Energiainteraccionnormalizada}
+
+Para estudiar la naturaleza de las correlaciones se calculararon la
+``Información Mutua'' que mide tanto las correlaciones clásicas
+como cuánticas, la ``Quantum Discord'' que mide las correlaciones
+cuánticas y la ``Concurrence'' que mide el entrelazamiento. Se encontró
+que tanto la Concurrence como la Quantum Discord valen 0 durante toda
+la evolución, lo que indica que no hay entrelazamiento y que todas
+las correlaciones son clásicas. Por lo tanto en todos los lugares
+a lo largo de este texto donde se habla de entrelazamiento está mal,
+en realidad son correlaciones clásicas. 
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/Discord0}
+
+Acá me surge una duda. Ya que la matriz densidad para la cual la información
+mutua es máxima es
+
+\begin{equation}
+\rho=\frac{1}{2}\vert00\rangle\langle00\vert+\frac{1}{2}\vert11\rangle\langle11\vert-\frac{1}{Z^{2}}\left(\vert00\rangle\langle00\vert+\vert11\rangle\langle11\vert-\vert01\rangle\langle01\vert-\vert10\rangle\langle10\vert\right)
+\end{equation}
+
+Las matrices densidad reducidas de cada sistema son 
+\begin{equation}
+\rho=\frac{1}{2}\vert0\rangle\langle0\vert+\frac{1}{2}\vert1\rangle\langle1\vert
+\end{equation}
+
+Entonces el producto de los estados de los dos subsistemas no me dan
+la matriz densidad total. ¿Esto no indica entrelazamiento? 
+
+Como la Quantum Discord vale 0, la concurrence tiene que valer 0,
+pero si estoy equivocado con esto significa que calculé mal las dos
+cosas.
+
+\section*{3 o más qubits (Interacciones de N cuerpos)}
+
+No llegaba al equilibrio porque estaba planteando mal las interacciones.
+Tengo que tener en cuenta que para sistemas de mayor dimensión hay
+que hacer permutaciónes con más niveles, por lo tanto hay que agregar
+más términos que los de la forma (27). 
+
+Por ejemplo, para 3 qubits se utilizó la interacción 
+\[
+V=\epsilon(\sigma_{B1}^{+}\otimes\sigma_{B2}^{+}\otimes\sigma_{B3}^{+}\otimes\sigma_{A1}^{+}\otimes\sigma_{A2}^{+}\otimes\sigma_{A3}^{+}+\sigma_{B1}^{-}\otimes\sigma_{B2}^{-}\otimes\sigma_{B3}^{-}\otimes\sigma_{A1}^{-}\otimes\sigma_{A2}^{-}\otimes\sigma_{A3}^{-}+\sigma_{B1}^{+}\otimes\sigma_{B2}^{+}\otimes\sigma_{B3}^{-}\otimes\sigma_{A1}^{+}\otimes\sigma_{A2}^{+}\otimes\sigma_{A3}^{-}+\sigma_{B1}^{-}\otimes\sigma_{B2}^{-}\otimes\sigma_{B3}^{+}\otimes\sigma_{A1}^{-}\otimes\sigma_{A2}^{-}\otimes\sigma_{A3}^{+}+permutaciones)
+\]
+
+Utilizando las interacciones de este modo, para todos los casos se
+alcanza el estado final deseado. Se calculó la potencia media del
+ciclo de carga para sistemas de uno, dos, tres y cuatro qubits, utilizando
+para cada caso interacciónes de uno, dos, tres y cuatro cuerpos respectivamente.
+Se muestran los resultados en los siguientes gráficos. En el primero
+se mide el tiempo de carga hasta que la batería se encuentra cargada
+en un 95\% y en el segundo un 99\%. Se grafica en rojo la región que
+queda acotada por la carga paralela $P(N)=NP(1)$, y el límite a la
+ventaja cuántica encontrado por Binder et.al. $P(N)=N^{2}P(1)$.
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/4qubits95%}
+
+\includegraphics[scale=0.7]{DissipativeME/Entrelazamiento/4qubits99%}
+
+Se observa que la potencia media es menor cuando se considera la carga
+de 99\% con respecto a la de 95\%, esto se debe a que el sistema evoluciona
+más lentamente cerca del equilibrio. El resultado más interesante
+es que para el caso de una batería de dos qubits se obtiene una potencia
+media superior a la cota de $N^{2}$de Binder et.al\cite{key-5}.
+Otro resultado interesante es que efectivamente estas baterías muestran
+una ventaja sobre las clásicas, ya que la potencia para N baterías
+es mayor a N veces la de una batería. 
+\begin{thebibliography}{1}
+\bibitem{key-1} F. Barra, Phys. Rev. Lett. 122, 210601 (2019) 
+
+\bibitem{key-4}R. Alicki and M. Fannes, Phys. Rev. E 87, 042123 (2013).
+
+\bibitem{key-2}G. De Chiara, G. Landi, A. Hewgill, B. Reid, A. Ferraro,
+A. J. Roncaglia, and M. Antezza, New J. Phys. 20, 113024 (2018).
+
+\bibitem{key-3} S. Julià-Farré, T. Salamon, A Riera, M. N. Bera,
+M. Lewenstein, arXiv:1811.04005v2
+
+\bibitem{key-5} F. Campaioli, F. A. Pollock, F. C. Binder, L. C\textasciiacute eleri,
+J. Goold, S. Vinjanampathy, and K. Modi, Phys. Rev. Lett. 118, 150601
+(2017).
+\end{thebibliography}
+
+\end{document}
