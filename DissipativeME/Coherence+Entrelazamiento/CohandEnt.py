@@ -1,7 +1,7 @@
 import numpy as np
 from numpy import linalg as LA
 import matplotlib.pyplot as plt
-
+#prueba 
 tf=20
 td = 0.85
 dt = 0.001
