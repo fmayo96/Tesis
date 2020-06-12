@@ -2,9 +2,9 @@ import numpy as np
 from numpy import linalg as LA
 import matplotlib.pyplot as plt
 
-tf=20
+tf=10
 td = 0.85
-dt = 0.001
+dt = 0.0001
 N = int(tf/dt)
 Nd = int(td/dt)
 h = 1.5
@@ -38,12 +38,12 @@ for i in range(2*Nd,N):
 H2 = np.zeros([N,4,4])
 for i in range(N):
     H2[i] = np.kron(H[i],Id)+np.kron(Id,H[i])
-V2 = 2*eps*(np.kron(su,np.kron(su,np.kron(su,su))) + np.kron(sd,np.kron(sd,np.kron(sd,sd)))) + 2*eps*(np.kron(su,np.kron(sd,np.kron(su,sd))) + np.kron(sd,np.kron(su,np.kron(sd,su))))
+V2 = 2 * eps * (np.kron(su2, su2) + np.kron(sd2, sd2))
 Hconst = [[h,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,-h]]
 def D_1(x):
         rho = np.kron(x,rho2E)
         Conmutator = np.dot(V2,np.dot(V2,rho))-np.dot(V2,np.dot(rho,V2))-np.dot(V2,np.dot(rho,V2))+np.dot(rho,np.dot(V2,V2))
-        return (-0.5*np.trace(np.reshape(Conmutator,[4,4,4,4]), axis1 = 1, axis2 = 3))
+        return (-0.5*np.trace(Conmutator.reshape([4,4,4,4]), axis1 = 1, axis2 = 3))
 
 
 def L_1(x):
@@ -107,5 +107,5 @@ E[0] = 0
 t = np.linspace(0,tf,N)
 plt.figure()
 plt.plot(t,E/2, linewidth = 2)
-#plt.plot(t,E2,'r', linewidth = 2)
+plt.plot(t,E2,'r', linewidth = 2)
 plt.show()

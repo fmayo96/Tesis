@@ -78,7 +78,7 @@ def K3_0(x):
     return dt * (L_0(x + 0.5 * K2_0(x)))
 def K4_0(x):
     return dt * (L_0(x + K3_0(x)))
-Nc = 90
+Nc = 10
 C = np.zeros(Nc)
 P = np.zeros(Nc)
 Eff = np.zeros(Nc)
