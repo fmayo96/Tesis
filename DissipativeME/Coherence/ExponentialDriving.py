@@ -97,18 +97,17 @@ for i in range(0,(2*Nd)-1,2):
     rho[i+2] = rho[i+1] + (1.0/6) * (K1_0(rho[i+1])+2*K2_0(rho[i+1])+2*K2_0(rho[i+1])+K4_0(rho[i+1]))
     rhop = np.kron(rho[i],rhoE)
     Conmutator = np.dot(V,np.dot(V,np.kron(np.eye(2),H2)))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))+np.dot(np.kron(np.eye(2),H2),np.dot(V,V))
-    Q[i+1] = Q[i] + dt * (np.trace(np.dot(rhop,Conmutator))+(dt/2) * np.trace(np.dot(rhop,Conmutator)))
+    Conmutator = np.dot(np.eye(4)*0.5, Conmutator)
+    Q[i+1] = Q[i] + dt * 0.5 * (np.trace(np.dot(rhop,Conmutator))+(dt/2) * np.trace(np.dot(rhop,Conmutator)))
     Q[i+2] = Q[i+1]
 for i in range(2*Nd,N-1):
     rho[i+1] = rho[i] + (1.0/6) * (K1_2(rho[i])+2*K2_2(rho[i])+2*K3_2(rho[i])+K4_2(rho[i]))
     rho[i+1] = np.dot((1 - 0.5*p)*np.eye(2),rho[i+1]) + 0.5*p*(np.dot(2/h*H[i],np.dot(rho[i+1],2/h*H[i])))
     rhop = np.kron(rho[i],rhoE)
     Conmutator = np.dot(V,np.dot(V,np.kron(np.eye(2),H2)))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))+np.dot(np.kron(np.eye(2),H2),np.dot(V,V))
-    Q[i+1] = Q[i] + dt * (np.trace(np.dot(rhop,Conmutator))+(dt/2) * np.trace(np.dot(rhop,Conmutator)))
+    Conmutator = np.dot(np.eye(4)*0.5, Conmutator)
+    Q[i+1] = Q[i] + dt  * (np.trace(np.dot(rhop,Conmutator))+(dt/2) * np.trace(np.dot(rhop,Conmutator)))
 i = np.argmax(abs(rho[:,0,1]))
-print(np.argmax(abs(rho[:,0,1])))
-print(rho[i])
-print(abs(rho[i,0,1]))
 for i in range(0,2*Nd):
     rho3[i+1] = rho3[i] + dt * L_3(rho3[i] + (dt/2) * L_3(rho3[i]))
 
@@ -136,6 +135,9 @@ for i in range(1,N):
 E[0] = 0
 E2[0] = 0
 E3[0] = 0
+
+
+
 """
 plt.figure()
 plt.plot(t,H[:,0,0],linewidth = 2)
@@ -147,6 +149,7 @@ plt.yticks(fontsize = 12)
 plt.show()
 
 """
+print(f"Eficiencia = {E[N-1]/(E[N-1] - Q[N-1])}")
 
 np.savetxt("E_exp.txt",E,delimiter = '\n')
 

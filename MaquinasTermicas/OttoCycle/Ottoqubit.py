@@ -4,7 +4,7 @@ from numpy import linalg as LA
 from scipy.linalg import sqrtm
 
 tf=20
-dt = 0.0001
+dt = 0.001
 N = int(int(tf/dt)/2)
 
 h_hot = 2
@@ -152,6 +152,11 @@ for i in range(N):
     h[i+N] = h[i]
 
 plt.figure()
+plt.plot(t,E, linewidth=2)
+plt.show()
+"""
+
+plt.figure()
 plt.plot(t,rho[:,0,0],linewidth = 2)
 plt.plot(t,rho[:,0,1],linewidth = 2)
 plt.plot(t,rho[:,1,0],linewidth = 2)
@@ -166,3 +171,4 @@ plt.ylabel("Energy", fontsize = 12)
 plt.xticks(fontsize = 12)
 plt.yticks(fontsize = 12)
 plt.show()
+"""
