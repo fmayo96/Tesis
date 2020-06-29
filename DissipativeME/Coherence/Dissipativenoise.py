@@ -100,7 +100,7 @@ for j in tqdm(range(0,Nc)):
         rho[i+2] = rho[i+1] + (1.0/6) * (K1_0(rho[i+1])+2*K2_0(rho[i+1])+2*K2_0(rho[i+1])+K4_0(rho[i+1]))
         rhop = np.kron(rho[i],rhoE)
         Conmutator = np.dot(V,np.dot(V,np.kron(np.eye(2),H2)))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))+np.dot(np.kron(np.eye(2),H2),np.dot(V,V))
-        Conmutator = np.dot(np.eye(4)*0.5, Conmutator)
+        Conmutator = 0.5 * Conmutator
         Q[i+1] = Q[i] + dt * (np.trace(np.dot(rhop,Conmutator))+(dt/2) * np.trace(np.dot(rhop,Conmutator))) 
         Q[i+2] = Q[i+1]
     for i in range(2*Nd,N-1):
@@ -109,7 +109,7 @@ for j in tqdm(range(0,Nc)):
         rho[i + 1] = np.dot(Cb[i], np.dot(rho[i+1],LA.inv(Cb[i])))
         rhop = np.kron(rho[i],rhoE)
         Conmutator = np.dot(V,np.dot(V,np.kron(np.eye(2),H2)))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))-np.dot(V,np.dot(np.kron(np.eye(2),H2),V))+np.dot(np.kron(np.eye(2),H2),np.dot(V,V))
-        Conmutator = np.dot(np.eye(4)*0.5, Conmutator)
+        Conmutator = 0.5 * Conmutator
         Q[i+1] = Q[i] + dt * (np.trace(np.dot(rhop,Conmutator))+(dt/2) * np.trace(np.dot(rhop,Conmutator))) 
     l = np.argmax(abs(rho[:,0,1]))
     C[j] = abs(rho[l,0,1]) + abs(rho[l,1,0])

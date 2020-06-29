@@ -47,9 +47,8 @@ class reservoir():
         return np.diag(np.diag(np.exp(np.dot(np.eye(2)*(-self.beta), self.hamiltonian))/np.sum(np.diag(np.diag(np.exp(np.dot(np.eye(2) * (-self.beta), self.hamiltonian)))))))
     def Active_state(self):        
         return np.diag(np.diag(np.exp(np.dot(np.eye(2) * self.beta, self.hamiltonian))/np.sum(np.diag(np.diag(np.exp(np.dot(np.eye(2) * self.beta, self.hamiltonian)))))))
-cold_bath = reservoir(H_cold, 1)
-hot_bath = reservoir(H_hot,10)
-
+cold_bath = reservoir(H_cold, 10)
+hot_bath = reservoir(H_hot,1)
 class system():
     def __init__(self):
         self.hamiltonian = H_driven
