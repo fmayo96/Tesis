@@ -2376,6 +2376,71 @@ También se había encontrado que aparecía una ventaja en la eficiencia del
 
 \end_layout
 
+\begin_layout Standard
+También hicimos lo mimo pero proyectando en la base de energía, y se obtuvieron
+ resultados similares:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename DissipativeME/Coherence/Power_EnergyDephasingpng.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename DissipativeME/Coherence/Efficiency_EnergyDephasingpng.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\color red
+Me di cuenta que estaba calculando mal el calor!!! Las figuras correctas
+ son las que van a continuación:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename DissipativeME/Coherence/EffvsP_chequear.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Esta es la eficiencia cuando se aplica el dephasing noise en la base de
+ la energía.
+ Se puede ver que la eficiencia mejora con las coherencias, pero aún cuando
+ se eliminan las coherencias con el ruido la eficiencia sigue siendo superior
+ a la del caso para hamiltoniano constante.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename DissipativeME/Coherence/EffvsP_Zpng.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Ciclo de Otto de un Qubit sin coherencias
 \end_layout
@@ -2889,10 +2954,51 @@ Es interesante que esta eficiencia no depende de la duración del ciclo,
  calor y trabajo, pero ambas se compensan para dar siempre la misma eficiencia.
  Esto fue verificado resolviendo numéricamente para distintas duraciones
  de ciclo.
+ 
+\end_layout
+
+\begin_layout Standard
+Para que el ciclo funcione como motor, es decir generando trabajo, se deben
+ cumplir dos relaciones:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+h_{hot}>h_{cold}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+y 
+\begin_inset Formula 
+\[
+\frac{h_{cold}}{T_{cold}}>\frac{h_{hot}}{T_{hot}}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Ciclo estacionario
+\end_layout
+
+\begin_layout Standard
+Todas las simulaciones están hechas con 
+\begin_inset Formula $h_{cold}=1$
+\end_inset
+
+, 
+\begin_inset Formula $h_{hot}=2$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2907,7 +3013,7 @@ Decimos que el ciclo es estacionario cuando repeticiones sucesivas dan los
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename Otto Cycle/EvsHT_0,1.png
+	filename MaquinasTermicas/OttoCycle/EvsHT_0,1.png
 	scale 70
 	rotateOrigin center
 
@@ -2922,7 +3028,7 @@ Duración del ciclo 0.1.
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename Otto Cycle/EvsHT_1.png
+	filename MaquinasTermicas/OttoCycle/EvsHT_1.png
 	scale 70
 	rotateOrigin center
 
@@ -2937,7 +3043,7 @@ Duración del ciclo 1.
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename Otto Cycle/EvsHT_10.png
+	filename MaquinasTermicas/OttoCycle/EvsHT_10.png
 	scale 70
 	rotateOrigin center
 
@@ -3002,7 +3108,7 @@ Donde
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename Otto Cycle/PowervsTime.png
+	filename MaquinasTermicas/OttoCycle/PowervsTime.png
 	scale 70
 	rotateOrigin center
 
@@ -3013,6 +3119,10 @@ Donde
 
 \begin_layout Standard
 La duración mínima de ciclo que se calculó es 0.001.
+\end_layout
+
+\begin_layout Section
+Ciclos Termodinámicos con estados activos.
 \end_layout
 
 \begin_layout Bibliography
