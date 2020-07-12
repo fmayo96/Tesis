@@ -33,7 +33,7 @@ V = eps*(np.kron(su,su) + np.kron(sd,sd))
 H = np.zeros([N,2,2])
 tau = 20*td
 for i in range(0,2*Nd,2):
-    
+    H[i] = (h/2)*(np.dot((1-np.exp(-t[i]/tau))*np.eye(2),sz) + np.dot(np.exp(-t[i]/tau)*np.eye(2),sx))
 for i in range(1,2*Nd,2):
     H[i] = H[i-1]
 for i in range(2*Nd,N):

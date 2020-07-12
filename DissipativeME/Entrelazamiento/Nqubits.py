@@ -4,7 +4,7 @@ from numpy import linalg as LA
 from scipy.linalg import sqrtm
 
 tf=1
-dt = 0.0001
+dt = 0.001
 N = int(tf/dt)
 h = 1.5
 bh = 0.75
@@ -105,7 +105,21 @@ E1[0] = 0
 E2[0] = 0
 E3[0] = 0
 E4[0] = 0
+
 t = np.linspace(0,tf,N)
+plt.figure()
+plt.plot(t,E1,linewidth = 2)
+plt.plot(t,E2/2.0,linewidth = 2)
+plt.plot(t,E3/3.0,linewidth = 2)
+plt.plot(t,E4/4.0,linewidth = 2)
+plt.legend(["1 qubit","2 qubit", "3 qubit","4 qubit"])
+plt.ylabel("Energy per qubit")
+plt.xlabel("Time")
+plt.grid()
+plt.show()
+
+
+
 tcarga1 = 0
 tcarga2 = 0
 tcarga3 = 0
@@ -155,15 +169,5 @@ plt.legend(["N^2","N","P(N)/P(1)"], fontsize = 14)
 plt.xlabel("N", fontsize = 16)
 plt.ylabel("Average Power", fontsize = 16)
 plt.show()
-"""
-plt.figure()
-plt.plot(t,E1,linewidth = 2)
-plt.plot(t,E2/2.0,linewidth = 2)
-plt.plot(t,E3/3.0,linewidth = 2)
-plt.plot(t,E4/4.0,linewidth = 2)
-plt.legend(["1 qubit","2 qubit", "3 qubit","4 qubit"])
-plt.ylabel("Energy per qubit")
-plt.xlabel("Time")
-plt.grid()
-plt.show()
-"""
+
+

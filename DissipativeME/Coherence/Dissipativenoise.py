@@ -90,7 +90,7 @@ for i in range(N):
     Cb[i].reshape(2,2)
     Cb[i].transpose()  """
 for j in tqdm(range(0,Nc)):
-    p = j/(10*Nc)
+    p = j/(5*Nc)
     
 
     for i in range(0,(2*Nd)-1,2):

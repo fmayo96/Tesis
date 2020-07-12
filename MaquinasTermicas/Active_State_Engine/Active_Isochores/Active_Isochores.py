@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt 
-from repeatedintereactions import Reservoir, System
+from repeatedinteractions import Reservoir, System
 #------------Time--------------
 tf = 15
 dt = 0.001
@@ -55,6 +55,8 @@ qubit_dr.work.append(0)
 qubit_dr.Driven_evolution(hot_bath.Thermal_state(), hot_bath.hamiltonian, td, dt, V)
 qubit_dr.Time_evolution(hot_bath.Thermal_state(), hot_bath.hamiltonian, tf - 2 * td, dt, V)
 qubit.Time_evolution(hot_bath.Thermal_state(), hot_bath.hamiltonian, tf, dt, V)
+qubit_dr.Time_evolution(cold_bath.Thermal_state(), cold_bath.hamiltonian, tf, dt, V)
+qubit.Time_evolution(cold_bath.Thermal_state(), cold_bath.hamiltonian, tf, dt, V)
 qubit.energy[0] = 0
 qubit_dr.energy[0] = 0
 #-------------Graficar--------------------
