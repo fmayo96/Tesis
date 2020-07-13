@@ -1,4 +1,4 @@
-.PHONY: default objects executable all clean
+.PHONY: default help objects executable all clean
 CC = gcc
 
 CC_FLAGS = -g -std=gnu99 -O3 -Wall
@@ -22,7 +22,16 @@ all: objects executable
 
 $(EXECUTABLE): $(OBJECTS_C)
 	$(LD) $^ -o $@ $(LD_FLAGS)
-	rm $(OBJECTS_C)
+
+help:
+	@echo "\
+Options:\n\n\
+  make objects:       compiler makes objects for every *.c\n\
+  make executable:    compiler makes executable\n\
+  make all:           build all previous\n\
+  make clean:         delete output files\n\
+  make help:          display this help"
+
+
 clean:
 	rm $(OBJECTS_C) $(EXECUTABLE)
-    
