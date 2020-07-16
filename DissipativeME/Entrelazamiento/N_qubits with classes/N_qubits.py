@@ -1,7 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
-from RK4 import RK4
-from repeatedintereactions import Reservoir, System
+from repeatedinteractions_c import Reservoir, System
 
 #------------Time--------------
 tf = 5
@@ -83,10 +82,10 @@ if tengo_datos:
         for line in file:
             four_qubits.state.append(line)
 else:
-    qubit.Time_evolution(bath.Thermal_state(), bath.hamiltonian, tf, dt, V)
-    two_qubits.Time_evolution(bath2.Thermal_state(), bath2.hamiltonian, tf, dt, V2)
-    three_qubits.Time_evolution(bath3.Thermal_state(), bath3.hamiltonian, tf, dt, V3)
-    four_qubits.Time_evolution(bath4.Thermal_state(), bath4.hamiltonian, tf, dt, V4)
+    qubit.Open_evolution(bath.Thermal_state(), bath.hamiltonian, V, tf, dt)
+    two_qubits.Open_evolution(bath2.Thermal_state(), bath2.hamiltonian, V2, tf, dt)
+    three_qubits.Open_evolution(bath3.Thermal_state(), bath3.hamiltonian, V3, tf, dt)
+    four_qubits.Open_evolution(bath4.Thermal_state(), bath4.hamiltonian, V4, tf, dt)
     qubit.energy[0] = 0
     qubit.work[1] = 0
     two_qubits.energy[0] = 0

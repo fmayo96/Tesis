@@ -4,7 +4,6 @@ CC = gcc
 CC_FLAGS = -g -std=gnu99 -O3 -Wall
 LD_FLAGS = -lm 
 
-
 LD = $(CC)
 
 SOURCE_C = $(wildcard ../*.c)

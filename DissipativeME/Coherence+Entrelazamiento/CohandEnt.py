@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt 
-from repeatedinteractions import Reservoir, System
+from repeatedinteractions_c import Reservoir, System
 #------------Time--------------
 tf = 10
 dt = 0.001
