@@ -2334,28 +2334,6 @@ También se había encontrado que aparecía una ventaja en la eficiencia del
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename DissipativeME/Coherence/EfficiencyVsCoherence.png
-	scale 70
-	rotateOrigin center
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename DissipativeME/Coherence/EfficiencyVsCoherencezoom.png
-	scale 70
-	rotateOrigin center
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
 	filename DissipativeME/Coherence/Powervsp.png
 	scale 70
 	rotateOrigin center
@@ -2367,13 +2345,13 @@ También se había encontrado que aparecía una ventaja en la eficiencia del
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename DissipativeME/Coherence/Efficiencyvsp.png
+	filename DissipativeME/Coherence/EffvsP_Zpng.png
 	scale 70
 	rotateOrigin center
 
 \end_inset
 
-
+xº
 \end_layout
 
 \begin_layout Standard
@@ -2394,24 +2372,6 @@ También hicimos lo mimo pero proyectando en la base de energía, y se obtuviero
 
 \begin_layout Standard
 \begin_inset Graphics
-	filename DissipativeME/Coherence/Efficiency_EnergyDephasingpng.png
-	scale 70
-	rotateOrigin center
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\color red
-Me di cuenta que estaba calculando mal el calor!!! Las figuras correctas
- son las que van a continuación:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
 	filename DissipativeME/Coherence/EffvsP_chequear.png
 	scale 70
 	rotateOrigin center
@@ -2428,17 +2388,6 @@ Esta es la eficiencia cuando se aplica el dephasing noise en la base de
  se eliminan las coherencias con el ruido la eficiencia sigue siendo superior
  a la del caso para hamiltoniano constante.
  
-\end_layout
-
-\begin_layout Standard
-\begin_inset Graphics
-	filename DissipativeME/Coherence/EffvsP_Zpng.png
-	scale 70
-	rotateOrigin center
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
@@ -2820,7 +2769,7 @@ Cuando el ciclo es lo suficientemente lento como para que el sistema termalice
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-W=(h_{h}-h_{c})\,\sinh(\beta_{h}h_{h}/2)
+W=(h_{h}-h_{c})\,\tanh(\beta_{h}h_{h}/2)
 \end{equation}
 
 \end_inset
@@ -3123,6 +3072,525 @@ La duración mínima de ciclo que se calculó es 0.001.
 
 \begin_layout Section
 Ciclos Termodinámicos con estados activos.
+\end_layout
+
+\begin_layout Subsection
+Sin Coherencias (isotermas sin driving).
+\end_layout
+
+\begin_layout Standard
+Diseñamos un ciclo termodinámico en el cual incorporamos el proceso de carga
+ disipativo de una batería cuántica como una de las ramas.
+ Este ciclo consta de 5 ramas y cuenta con dos reservorios térmicos, uno
+ frío y otro caliente.
+ El ciclo es el siguiente:
+\end_layout
+
+\begin_layout Standard
+1) El sistema comienza en el estado activo a temperatura 
+\begin_inset Formula $T_{1}$
+\end_inset
+
+con hamiltoniano 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+.
+ Luego se cambia al estado térmico mediante una evolución unitaria.
+\end_layout
+
+\begin_layout Standard
+2) Con el sistema en estado térmico se cambia el hamiltoniano 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+ a 
+\begin_inset Formula $H_{2}$
+\end_inset
+
+ de manera adiabática.
+\end_layout
+
+\begin_layout Standard
+3) Se acopla el sistema al reservorio de temperatura 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+ y se carga el sistema con el protocolo de carga de baterías, hasta llegar
+ al estado activo con temperatura 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+y hamiltoniano 
+\begin_inset Formula $H_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+4) Se cambia el hamiltoniano desde 
+\begin_inset Formula $H_{2}$
+\end_inset
+
+a 
+\begin_inset Formula $H_{1}$
+\end_inset
+
+ de forma adiabática.
+ 
+\end_layout
+
+\begin_layout Standard
+5) Se pone en contacto al sistema con el reservorio a temperatura 
+\begin_inset Formula $T_{1}$
+\end_inset
+
+y el sistema vuelve al estado inicial.
+ 
+\end_layout
+
+\begin_layout Standard
+El trabajo del sistema a lo largo de cada rama es el siguiente: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W_{1}=-Tr[H_{1}\,(\omega_{\beta_{1}}(H_{1})-\omega_{-\beta_{1}}(H_{1}))]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W_{2}=-Tr[(H_{2}-H_{1})\,\omega_{\beta_{1}}(H_{1})]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W_{3}=-2\,Tr[H_{2}\,(\omega_{-\beta_{2}}(H_{2})-\omega_{\beta_{1}}(H_{1}))]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W_{4}=-Tr[(H_{1}-H_{2})\,\omega_{-\beta_{2}}(H_{2})]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W_{5}=-2\,Tr[H_{1}\,(\omega_{-\beta_{1}}(H_{1})-\omega_{-\beta_{2}}(H_{2}))]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $\omega_{\beta}(H)$
+\end_inset
+
+ es el estado térmico y 
+\begin_inset Formula $\omega_{-\beta}(H)$
+\end_inset
+
+ es el estado activo que se corresponde con el estado térmico a temperatura
+ negativa.
+\end_layout
+
+\begin_layout Standard
+El trabajo total del ciclo es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W=(h_{1}-h_{2})tanh(\frac{\beta_{2}h_{2}}{2})\,-\,(h_{2}+h_{1})tanh(\frac{\beta_{1}h_{!}}{2})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eligiendo correctamente los parámetros este ciclo puede dar trabajo positivo,
+ como se muestra en la siguiente figura.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename MaquinasTermicas/Active_State_Engine/Work_vs_h_vs_beta.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En esta figura se tomaron los parámetros 
+\begin_inset Formula $h_{2}=1$
+\end_inset
+
+ y 
+\begin_inset Formula $\beta_{2}=10$
+\end_inset
+
+ y se calculó el trabajo para distintos valores de 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ y 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+.
+ Se puede observar que para valores chicos de 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+(0.1, 0.2) se obtiene un rango de valores de 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+para los cuales el ciclo termodinámico entrega trabajo positivo, mientras
+ que para valores mayores de 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+ ya no hay valores de 
+\begin_inset Formula $h_{1}$
+\end_inset
+
+ para los que se obtenga trabajo positivo.
+ 
+\end_layout
+
+\begin_layout Standard
+Ahora estudiaremos la eficiencia del ciclo.
+ Para esto además del trabajo (58) necesitamos calcular el calor.
+ El ciclo tiene dos ramas abiertas donde puede intercambiar calor, la primera
+ cuando el sistema se pone en contacto con un reservorio a temperatura inversa
+ 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ y es llevado del estado térmico 
+\begin_inset Formula $\omega_{\beta_{1}}(H_{1})$
+\end_inset
+
+ al estado activo 
+\begin_inset Formula $\omega_{-\beta_{2}}(H_{2})$
+\end_inset
+
+.
+ Durante este proceso el calor es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Q_{1}=-h_{2}\,(tanh(\frac{\beta_{2}h_{2}}{2})\,+\,tanh(\frac{\beta_{1}h_{\text{1}}}{2}))<0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se puede observar que durante esta rama el sistema le entrega calor al reservori
+o a temperatura inversa 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.
+ En la otra rama abierta el sistema se pone en contacto con un reservorio
+ a temperatura inversa 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+ y pasa del estado 
+\begin_inset Formula $\omega_{-\beta_{2}}(H_{2})$
+\end_inset
+
+ al estado 
+\begin_inset Formula $\omega_{-\beta_{1}}(H_{1})$
+\end_inset
+
+ cerrando el ciclo.
+ El calor intercambiaro a lo largo de esta rama es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+Q_{2}=h_{1}\,(tanh(\frac{\beta_{2}h_{2}}{2})\,-\,tanh(\frac{\beta_{1}h_{1}}{2}))
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En este caso el calor es positivo si :
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{h_{2}}{T_{2}}>\frac{h_{1}}{T_{1}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Viendo la ecuación (58) podemos ver que para que el trabajo sea positivo,
+ la condición (61) es necesaria, aunque no suficiente.
+ Esto indica que en el regimen en el que el ciclo da trabajo positivo, el
+ sistema absorve calor del reservorio a temperatura 
+\begin_inset Formula $T_{1}$
+\end_inset
+
+ y entrega calor al reservorio a temperatura 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+.
+ La otra condición para que el trabajo sea positivo es 
+\begin_inset Formula $h_{1}>h_{2}$
+\end_inset
+
+, que junto con (61) implican 
+\begin_inset Formula $T_{1}>T_{2}.$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Por lo tanto en el regimen en el que el ciclo da trabajo positivo el sistema
+ absorve calor del reservorio caliente y deposita calor en el reservorio
+ frío, cumpliendo con la segunda ley de la termodinámica (menos mal!).
+\end_layout
+
+\begin_layout Standard
+Por lo tanto para obtener la eficiencia tenemos que dividir el trabajo que
+ hace el sistema por 
+\begin_inset Formula $Q_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\eta=\frac{W}{Q_{2}}=1-\frac{h_{2}}{h_{1}}\,\frac{\tanh(\beta_{2}h_{2}/2)+\tanh(\beta_{1}h_{1}/2)}{\tanh(\beta_{2}h_{2}/2)-\tanh(\beta_{1}h_{1}/2)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Teniendo en cuenta que 
+\begin_inset Formula $T_{1}$
+\end_inset
+
+es mayor que 
+\begin_inset Formula $T_{2}$
+\end_inset
+
+ pasamos a llamarlas 
+\begin_inset Formula $T_{hot}$
+\end_inset
+
+ y 
+\begin_inset Formula $T_{cold}$
+\end_inset
+
+ idem con 
+\begin_inset Formula $h_{1}=h_{hot}$
+\end_inset
+
+ y 
+\begin_inset Formula $h_{2}=h_{cold}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entonces tenemos un ciclo termodinámico de cinco ramas que opera entre dos
+ reservorios térmicos.
+ El ciclo da trabajo:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W\,=\,(h_{hot}-h_{cold})\,\tanh(\frac{h_{cold}}{2T_{hot}})\,-\,(h_{hot}+h_{cold})\,\tanh(\frac{h_{hot}}{2T_{cold}})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La eficiencia del ciclo es:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\eta\,=\,1\,-\,\frac{h_{cold}}{h_{hot}}\,\frac{\tanh(\beta_{cold}h_{cold}/2)+\tanh(\beta_{hot}h_{hot}/2)}{\tanh(\beta_{cold}h_{cold}/2)-\tanh(\beta_{hot}h_{hot}/2)}\leq\eta_{Otto}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se puede observar que este ciclo tiene eficiencia menor que el ciclo de
+ Otto, y que a diferencia de este la eficiencia depende de la temperatura.
+ 
+\end_layout
+
+\begin_layout Standard
+En la siguiente figura se muestra la eficiencia en función de 
+\begin_inset Formula $h_{hot}$
+\end_inset
+
+ para distintas temperaturas.
+ Se puede ver que para 
+\begin_inset Formula $\beta_{hot}<<1$
+\end_inset
+
+ la eficiencia se acerca cada vez más a la de Otto.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename MaquinasTermicas/Active_State_Engine/Eff_vs_h_vs_T.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Podemos ver entonecs que logramos construir un ciclo termodinámico que genere
+ trabajo positivo incluyendo como una de las ramas el proceso de carga de
+ baterías que estamos estudiando.
+ Esto nos va a permitir utilizar en esa rama los hamiltonianos dependientes
+ del tiempo estudiados, que deberían mejorar tanto la potencia del ciclo
+ como su eficiencia.
+\end_layout
+
+\begin_layout Subsection
+Isoterma con driving.
+\end_layout
+
+\begin_layout Standard
+Estudiamos el mismo ciclo que en la sección anterior, pero ahora en la rama
+ correspondiente al proceso de carga de la batería, cuando el sistema se
+ pone en contacto con el reservorio frío, usaremos el hamiltoniano dependiente
+ del tiempo (ec 36).
+ El objetivo es estudiar si la aparición de coherenicas mejora la eficiencia
+ del ciclo.
+ Las otras 4 ramas del ciclo son iguales al caso anterior, por lo tanto
+ el trabajo y calor de esas ramas sigue siendo igual que antes.
+ Para ver si mejora la eficiencia del ciclo entonces tenemos que ver cómo
+ se modifica el trabajo a lo largo de la rama con hamiltoniano dependiente
+ del tiempo.
+ 
+\end_layout
+
+\begin_layout Standard
+En la siguiente figura se muestra el trabajo del sistema en función de 
+\begin_inset Formula $h_{hot}$
+\end_inset
+
+ para temperaturas 
+\begin_inset Formula $\beta_{hot}=0.1$
+\end_inset
+
+ y 
+\begin_inset Formula $\beta_{cold}=$
+\end_inset
+
+10, tomando 
+\begin_inset Formula $h_{cold}=1$
+\end_inset
+
+.
+ Para los valores eleigdos el ciclo produce trabajo positivo.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename MaquinasTermicas/Active_State_Engine/W_driv_vs_cte_b1=0.2_b2=10_h2=1.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Podemos ver que el trabajo para el caso donde el hamiltoniano es dependiente
+ del tiempo es mayor al caso constante.
+ Debido a que el trabajo en las otras ramas es el mismo para ambos casos,
+ y lo mismo sucede con el calor que absorve el sistema cuando está en contacto
+ con el reservorio caliente, podemos concluir que la eficiencia del ciclo
+ aumenta al introducir el hamiltoniano dependiente del tiempo.
+ 
+\end_layout
+
+\begin_layout Standard
+Ahora falta graficar la eficiencia y ver si el ciclo con coherencias puede
+ tener eficiencia mejor que el ciclo de Otto, y luego ver qué pasa al introducir
+ el ruido de dephasing en esa rama para ver si la mejora encontrada se debe
+ a las coherencias.
+ 
 \end_layout
 
 \begin_layout Bibliography
