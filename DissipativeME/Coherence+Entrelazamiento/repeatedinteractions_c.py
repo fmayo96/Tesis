@@ -32,7 +32,7 @@ class System():
         for i in tqdm(range(self.prev_steps, self.prev_steps + N - 1)):
             self.energy.append(np.trace(np.dot(self.state[i], self.hamiltonian[i])) - self.energy[0])
             rhop = np.kron(self.state[i], bath_state)
-            Conmutator = 0.5 * (np.dot(interaction,np.dot(interaction,np.kron(np.eye(2),bath_hamiltonian)))-np.dot(interaction,np.dot(np.kron(np.eye(2),bath_hamiltonian),interaction))-np.dot(interaction,np.dot(np.kron(np.eye(2),bath_hamiltonian),interaction))+np.dot(np.kron(np.eye(2),bath_hamiltonian),np.dot(interaction,interaction)))
+            Conmutator = 0.5 * (np.dot(interaction,np.dot(interaction,np.kron(np.eye(self.dim),bath_hamiltonian)))-np.dot(interaction,np.dot(np.kron(np.eye(self.dim),bath_hamiltonian),interaction))-np.dot(interaction,np.dot(np.kron(np.eye(self.dim),bath_hamiltonian),interaction))+np.dot(np.kron(np.eye(self.dim),bath_hamiltonian),np.dot(interaction,interaction)))
             self.heat.append(self.heat[-1] + dt * np.trace(np.dot(rhop, Conmutator)))
         for i in tqdm(range(self.prev_steps, self.prev_steps + N-1)):
             self.work.append(self.heat[i] - self.energy[i])
@@ -50,7 +50,7 @@ class System():
             self.energy.append(np.trace(np.dot(self.state[i], self.hamiltonian[i])) - self.energy[0])        
         for i in range(self.prev_steps, self.prev_steps + 2*Nd, 2):
             rhop = np.kron(self.state[i],bath_state)
-            Conmutator = 0.5 * (np.dot(interaction,np.dot(interaction,np.kron(np.eye(2),bath_hamiltonian)))-np.dot(interaction,np.dot(np.kron(np.eye(2),bath_hamiltonian),interaction))-np.dot(interaction,np.dot(np.kron(np.eye(2),bath_hamiltonian),interaction))+np.dot(np.kron(np.eye(2),bath_hamiltonian),np.dot(interaction,interaction)))
+            Conmutator = 0.5 * (np.dot(interaction,np.dot(interaction,np.kron(np.eye(self.dim),bath_hamiltonian)))-np.dot(interaction,np.dot(np.kron(np.eye(self.dim),bath_hamiltonian),interaction))-np.dot(interaction,np.dot(np.kron(np.eye(self.dim),bath_hamiltonian),interaction))+np.dot(np.kron(np.eye(self.dim),bath_hamiltonian),np.dot(interaction,interaction)))
             self.heat.append(self.heat[-1] + dt * np.trace(np.dot(rhop, Conmutator)))
             self.heat.append(self.heat[-1])
         for i in tqdm(range(self.prev_steps + 1, self.prev_steps + 2*Nd + 1)):

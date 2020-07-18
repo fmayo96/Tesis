@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 from repeatedinteractions_c import Reservoir, System
+
 #------------Time--------------
 tf = 10
 dt = 0.001
@@ -37,7 +38,8 @@ for i in range(N):
     H_driven2.append(np.kron(H_driven[i], Id) + np.kron(Id, H_driven[i]))
 eps = np.sqrt(0.5)
 V = np.array(eps*(np.kron(su,su) + np.kron(sd,sd)))
-V2 = np.array(2* eps * (np.kron(su, np.kron(su, np.kron(su, su))) + np.kron(sd, np.kron(sd, np.kron(sd, sd)))) + np.kron(su, np.kron(sd, np.kron(su, su))) + np.kron(sd, np.kron(sd, np.kron(sd, sd))))
+V2 = np.array(2* eps * (np.kron(su, np.kron(su, np.kron(su, su))) + np.kron(sd, np.kron(sd, np.kron(sd, sd))))) 
+#print(V2)
 V_db = np.array(eps*(np.kron(su,sd) + np.kron(sd,su)))
 #--------Condiciones Iniciales------------
 bath = Reservoir(H, 1)
@@ -53,10 +55,10 @@ two_qubits.energy.append(np.trace(np.dot(two_qubits.state[0], two_qubits.hamilto
 two_qubits.work.append(0)
 two_qubits.heat.append(0)
 #---------Evolución-----------------------
-qubit.Driven_evolution(bath.Thermal_state(), bath.hamiltonian, td, dt, V)
-qubit.Time_evolution(bath.Thermal_state(), bath.hamiltonian, tf - 2*td, dt, V)
-two_qubits.Driven_evolution(two_qubits_bath.Thermal_state(), two_qubits_bath.hamiltonian, td, dt, V2)
-two_qubits.Time_evolution(two_qubits_bath.Thermal_state(), two_qubits_bath.hamiltonian, tf - 2*td, dt, V2)
+qubit.Driven_evolution(bath.Thermal_state(), bath.hamiltonian, V, td, dt)
+qubit.Open_evolution(bath.Thermal_state(), bath.hamiltonian, V, tf-2*td, dt)
+two_qubits.Driven_evolution(two_qubits_bath.Thermal_state(), two_qubits_bath.hamiltonian, V2, td, dt)
+two_qubits.Open_evolution(two_qubits_bath.Thermal_state(), two_qubits_bath.hamiltonian, V2, tf-2*td, dt)
 qubit.work[1] = 0
 qubit.energy[0] = 0
 two_qubits.work[1] = 0

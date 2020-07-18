@@ -16,3 +16,4 @@ def partial_trace(M, dim_A, dim_B):
             c[i,j] = out[i*dim_A + j]
     return c
 
+
