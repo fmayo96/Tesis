@@ -1,5 +1,6 @@
 import numpy as np 
 import ctypes as C 
+from numpy.ctypeslib import ndpointer
 t_evol = C.CDLL("/Users/francomayo/Franco/Tesis/Modulos_en_C/./libtime_evolution.so")
 
 def open_evolution(state, hamiltonian, bath_state, bath_hamiltonian, interaction, dim, tf, dt):
@@ -101,3 +102,152 @@ def driven_evolution(state, hamiltonian, bath_state, bath_hamiltonian, interacti
                 c[i, j, k] = out1[i*dim*dim + j*dim + k] + out2[i*dim*dim + j*dim + k]*1j
     
     return c
+
+
+def closed_evolution(state, hamiltonian, dim, tf, dt):
+    N = int(tf/dt)
+    state_r = np.real(state)
+    state_i = np.imag(state)
+    hamiltonian_r = np.real(hamiltonian)
+    hamiltonian_i = np.imag(hamiltonian)
+    out1 = np.zeros(N*dim*dim, dtype = C.c_double)
+    out2 = np.zeros(N*dim*dim, dtype = C.c_double)
+    in1 = np.array(state_r, dtype = C.c_double)
+    in2 = np.array(state_i, dtype = C.c_double)
+    in3 = np.array(hamiltonian_r, dtype = C.c_double)
+    in4 = np.array(hamiltonian_i, dtype = C.c_double)
+    in5 = C.c_int(dim)
+    in6 = C.c_double(tf)
+    in7 = C.c_double(dt)
+    intp = C.POINTER(C.c_double)
+    pointout1 = out1.ctypes.data_as(intp)
+    pointout2 = out2.ctypes.data_as(intp)
+    point1 = in1.ctypes.data_as(intp)
+    point2 = in2.ctypes.data_as(intp)
+    point3 = in3.ctypes.data_as(intp)
+    point4 = in4.ctypes.data_as(intp)   
+    t_evol.wrapper_Closed_evolution(pointout1, pointout2, point1, point2, point3, point4, in5, in6, in7)
+    c = np.zeros([N,dim,dim], dtype = np.complex)
+    for i in range(N):
+        for j in range(dim):
+            for k in range(dim):
+                c[i, j, k] = out1[i*dim*dim + j*dim + k] + out2[i*dim*dim + j*dim + k]*1j
+    
+    return c
+
+def calc_energy(state, hamiltonian, dim, tf, dt):
+    N = int(tf/dt)
+    state_r = np.real(state)
+    state_i = np.imag(state)
+    hamiltonian_r = np.real(hamiltonian)
+    hamiltonian_i = np.imag(hamiltonian)
+    out1 = np.zeros(N, dtype = C.c_double)
+    in1 = np.array(state_r, dtype = C.c_double)
+    in2 = np.array(state_i, dtype = C.c_double)
+    in3 = np.array(hamiltonian_r, dtype = C.c_double)
+    in4 = np.array(hamiltonian_i, dtype = C.c_double)
+    in5 = C.c_int(dim)
+    in6 = C.c_double(tf)
+    in7 = C.c_double(dt)
+    intp = C.POINTER(C.c_double)
+    pointout1 = out1.ctypes.data_as(intp)
+    point1 = in1.ctypes.data_as(intp)
+    point2 = in2.ctypes.data_as(intp)
+    point3 = in3.ctypes.data_as(intp)
+    point4 = in4.ctypes.data_as(intp)   
+    t_evol.wrapper_energy(pointout1, point1, point2, point3, point4, in5, in6, in7)
+    energy = np.zeros(N, dtype = np.complex)
+    for i in range(N):
+        energy[i] = out1[i]
+    return energy
+
+def calc_heat(state, bath_state, bath_hamiltonian, interaction, dim, tf, dt):
+    N = int(tf/dt)
+    state_r = np.real(state)
+    state_i = np.imag(state)
+    bath_state_r = np.real(bath_state)
+    bath_state_i = np.imag(bath_state)
+    bath_hamiltonian_r = np.real(bath_hamiltonian)
+    bath_hamiltonian_i = np.imag(bath_hamiltonian)
+    interaction_r = np.real(interaction)
+    interaction_i = np.imag(interaction)
+    out1 = np.zeros(N, dtype = C.c_double)
+    in1 = np.array(state_r, dtype = C.c_double)
+    in2 = np.array(state_i, dtype = C.c_double)
+    in3 = np.array(bath_state_r, dtype = C.c_double)
+    in4 = np.array(bath_state_i, dtype = C.c_double)
+    in5 = np.array(bath_hamiltonian_r, dtype = C.c_double)
+    in6 = np.array(bath_hamiltonian_i, dtype = C.c_double)
+    in7 = np.array(interaction_r, dtype = C.c_double)
+    in8 = np.array(interaction_i, dtype = C.c_double)
+    in9 = C.c_int(dim)
+    in10 = C.c_double(tf)
+    in11 = C.c_double(dt)
+    intp = C.POINTER(C.c_double)
+    pointout1 = out1.ctypes.data_as(intp)
+    point1 = in1.ctypes.data_as(intp)
+    point2 = in2.ctypes.data_as(intp)
+    point3 = in3.ctypes.data_as(intp)
+    point4 = in4.ctypes.data_as(intp)
+    point5 = in5.ctypes.data_as(intp)
+    point6 = in6.ctypes.data_as(intp)
+    point7 = in7.ctypes.data_as(intp)
+    point8 = in8.ctypes.data_as(intp)
+    t_evol.wrapper_heat(pointout1, point1, point2, point3, point4, point5, point6, point7, point8, in9, in10, in11)
+    heat = np.zeros(N, dtype=np.complex)
+    for i in range(N):
+        heat[i] = out1[i]
+    return heat 
+def calc_heat_driven(state, bath_state, bath_hamiltonian, interaction, dim, tf, dt):
+    N = int(tf/dt)
+    state_r = np.real(state)
+    state_i = np.imag(state)
+    bath_state_r = np.real(bath_state)
+    bath_state_i = np.imag(bath_state)
+    bath_hamiltonian_r = np.real(bath_hamiltonian)
+    bath_hamiltonian_i = np.imag(bath_hamiltonian)
+    interaction_r = np.real(interaction)
+    interaction_i = np.imag(interaction)
+    out1 = np.zeros(N, dtype = C.c_double)
+    in1 = np.array(state_r, dtype = C.c_double)
+    in2 = np.array(state_i, dtype = C.c_double)
+    in3 = np.array(bath_state_r, dtype = C.c_double)
+    in4 = np.array(bath_state_i, dtype = C.c_double)
+    in5 = np.array(bath_hamiltonian_r, dtype = C.c_double)
+    in6 = np.array(bath_hamiltonian_i, dtype = C.c_double)
+    in7 = np.array(interaction_r, dtype = C.c_double)
+    in8 = np.array(interaction_i, dtype = C.c_double)
+    in9 = C.c_int(dim)
+    in10 = C.c_double(tf)
+    in11 = C.c_double(dt)
+    intp = C.POINTER(C.c_double)
+    pointout1 = out1.ctypes.data_as(intp)
+    point1 = in1.ctypes.data_as(intp)
+    point2 = in2.ctypes.data_as(intp)
+    point3 = in3.ctypes.data_as(intp)
+    point4 = in4.ctypes.data_as(intp)
+    point5 = in5.ctypes.data_as(intp)
+    point6 = in6.ctypes.data_as(intp)
+    point7 = in7.ctypes.data_as(intp)
+    point8 = in8.ctypes.data_as(intp)
+    t_evol.wrapper_heat_driven(pointout1, point1, point2, point3, point4, point5, point6, point7, point8, in9, in10, in11)
+    heat = np.zeros(N, dtype=np.complex)
+    for i in range(N):
+        heat[i] = out1[i]
+    return heat 
+
+def calc_work(energy, heat):
+    N = len(energy)
+    out1 = np.zeros(N, dtype = C.c_double)
+    in1 = np.array(energy, dtype = C.c_double)
+    in2 = np.array(heat, dtype = C.c_double)
+    in3 = C.c_int(N)
+    intp = C.POINTER(C.c_double)
+    pointout1 = out1.ctypes.data_as(intp)
+    point1 = in1.ctypes.data_as(intp)
+    point2 = in2.ctypes.data_as(intp)
+    t_evol.calc_work(pointout1, point1, point2, in3)
+    work = np.zeros(N, dtype=np.complex)
+    for i in range(N):
+        work[i] = out1[i]
+    return work

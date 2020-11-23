@@ -56,3 +56,18 @@ class System():
         for i in tqdm(range(self.prev_steps + 1, self.prev_steps + 2*Nd + 1)):
             self.work.append(self.heat[i] - self.energy[i])
         self.prev_steps += 2*Nd
+    def Closed_evolution(self, tf, dt):
+        N = int(tf/dt)
+        initial_state = np.zeros([N,self.dim, self.dim], dtype = np.complex)
+        initial_state[0] = self.state[-1]
+        state = np.zeros([N, self.dim, self.dim], dtype = np.complex)
+        state = closed_evolution(initial_state, self.hamiltonian[self.prev_steps:], self.dim, tf, dt)
+        for i in range(N):
+            self.state.append(state[i])
+        for i in tqdm(range(self.prev_steps, self.prev_steps + N - 1)):
+            self.energy.append(np.trace(np.dot(self.state[i], self.hamiltonian[i])) - self.energy[0])            
+        for i in tqdm(range(self.prev_steps, self.prev_steps + N-1)):
+            self.work.append(-self.energy[i])
+        self.prev_steps += N
+        self.stroke_count += 1
+    

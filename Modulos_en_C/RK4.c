@@ -4,7 +4,7 @@
 #include <complex.h>
 #include "matrixoperations.h"
 #include "propagators.h"
-int RK4_open(double complex *propagator, double complex *dissipator, double complex *state, double complex *hamiltonian, double complex *bath_state, double complex *bath_hamiltinian, double complex *interaction, double dt, int dim, int step)
+void RK4_open(double complex *propagator, double complex *dissipator, double complex *state, double complex *hamiltonian, double complex *bath_state, double complex *bath_hamiltinian, double complex *interaction, double dt, int dim, int step)
 {
     int i;
     double complex *K1, *K2, *K3, *K4, *step_state, *aux_state, *step_hamiltonian;
@@ -58,9 +58,8 @@ int RK4_open(double complex *propagator, double complex *dissipator, double comp
     free(aux_state);
     free(step_state);
     free(step_hamiltonian);
-    return 0;
-}
-int RK4_closed(double complex *propagator, double complex *state, double complex *hamiltonian, double dt, int dim, int step)
+ }
+void RK4_closed(double complex *propagator, double complex *state, double complex *hamiltonian, double dt, int dim, int step)
 {
     int i;
     double complex *K1, *K2, *K3, *K4, *step_state, *aux_state, *step_hamiltonian;
@@ -110,7 +109,6 @@ int RK4_closed(double complex *propagator, double complex *state, double complex
     free(aux_state);
     free(step_state);
     free(step_hamiltonian);
-    return 0;
 }
 
 

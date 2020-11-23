@@ -3,7 +3,7 @@
 #include <math.h>
 #include <complex.h>
 #include "matrixoperations.h"
-int Dissipator(double complex *dissipator, double complex *state, double complex *bath_state, double complex *interaction, int dim)
+void Dissipator(double complex *dissipator, double complex *state, double complex *bath_state, double complex *interaction, int dim)
 {   
     int i;
     double complex *rho, *comm_v_rho, *double_comm;
@@ -18,9 +18,8 @@ int Dissipator(double complex *dissipator, double complex *state, double complex
     {
         *(dissipator + i) = -*(dissipator + i) * 0.5;
     }
-    return 0;
 }
-int Propagator(double complex *propagator, double complex *state, double complex *hamiltonian, double complex *dissipator, int dim)
+void Propagator(double complex *propagator, double complex *state, double complex *hamiltonian, double complex *dissipator, int dim)
 {
     int i;
     commutator(propagator, hamiltonian, state, dim);
@@ -29,9 +28,8 @@ int Propagator(double complex *propagator, double complex *state, double complex
         *(propagator + i) = *(propagator + i) *(-1*I);
         *(propagator + i) += *(dissipator + i);
     }
-    return 0;
 }
-int Unitary(double complex *propagator, double complex *state, double complex*hamiltonian, int dim)
+void Unitary(double complex *propagator, double complex *state, double complex*hamiltonian, int dim)
 {
     int i;
     commutator(propagator, hamiltonian, state, dim);
@@ -39,6 +37,6 @@ int Unitary(double complex *propagator, double complex *state, double complex*ha
     {
         *(propagator + i) = *(propagator + i) *(-1*I);
     }
-    return 0;
+
 }
 

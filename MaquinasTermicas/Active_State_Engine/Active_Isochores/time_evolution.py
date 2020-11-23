@@ -102,3 +102,37 @@ def driven_evolution(state, hamiltonian, bath_state, bath_hamiltonian, interacti
                 c[i, j, k] = out1[i*dim*dim + j*dim + k] + out2[i*dim*dim + j*dim + k]*1j
     
     return c
+
+
+def closed_evolution(state, hamiltonian, dim, tf, dt):
+    N = int(tf/dt)
+    state_r = np.real(state)
+    state_i = np.imag(state)
+    hamiltonian_r = np.real(hamiltonian)
+    hamiltonian_i = np.imag(hamiltonian)
+    out1 = np.zeros(N*dim*dim, dtype = C.c_double)
+    out2 = np.zeros(N*dim*dim, dtype = C.c_double)
+    in1 = np.array(state_r, dtype = C.c_double)
+    in2 = np.array(state_i, dtype = C.c_double)
+    in3 = np.array(hamiltonian_r, dtype = C.c_double)
+    in4 = np.array(hamiltonian_i, dtype = C.c_double)
+    in5 = C.c_int(dim)
+    in6 = C.c_double(tf)
+    in7 = C.c_double(dt)
+    intp = C.POINTER(C.c_double)
+    pointout1 = out1.ctypes.data_as(intp)
+    pointout2 = out2.ctypes.data_as(intp)
+    point1 = in1.ctypes.data_as(intp)
+    point2 = in2.ctypes.data_as(intp)
+    point3 = in3.ctypes.data_as(intp)
+    point4 = in4.ctypes.data_as(intp)   
+    t_evol.wrapper_Open_evolution(pointout1, pointout2, point1, point2, point3, point4, in5, in6, in7)
+    c = np.zeros([N,dim,dim], dtype = np.complex)
+    for i in range(N):
+        for j in range(dim):
+            for k in range(dim):
+                c[i, j, k] = out1[i*dim*dim + j*dim + k] + out2[i*dim*dim + j*dim + k]*1j
+    
+    return c
+
+

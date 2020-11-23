@@ -1,0 +1,886 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 2cm
+\rightmargin 2cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Enfriamiento con interacciones repetidas.
+\end_layout
+
+\begin_layout Standard
+Consideramos que tenemos un sistema con hamiltoniano 
+\begin_inset Formula $H_{s}$
+\end_inset
+
+ que se encuentra en un estado térmico a temperatura inversa 
+\begin_inset Formula $\beta$
+\end_inset
+
+, y un reservorio térmico a la misma temperatura, constituido por N sistemas
+ auxiliares con hamiltoniano 
+\begin_inset Formula $H_{B}$
+\end_inset
+
+ y en estado térmico a temperatura inversa 
+\begin_inset Formula $\beta.$
+\end_inset
+
+ Nuestro objetivo es enfriar al sistema.
+ 
+\end_layout
+
+\begin_layout Standard
+Sabemos que utilizando el método de interacciones repetidas acoplamos al
+ sistema a los sistemas auxiliares secuencialmente con una interacción 
+\begin_inset Formula $V$
+\end_inset
+
+, el el sistema tiene un estado estacionario 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\rho_{est}=\frac{e^{-\beta H_{0}}}{Z_{0}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $H_{0}$
+\end_inset
+
+ es un operador que satisface las relaciones de conmutación 
+\begin_inset Formula $[V\,,\,H_{0}\,+\,H_{B}]=0$
+\end_inset
+
+ y 
+\begin_inset Formula $[H_{s}\,,\,H_{0}]=0$
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+literal "false"
+
+\end_inset
+
+.
+ Por lo tanto, si encontramos una forma de que 
+\begin_inset Formula $H_{0}\,=\,\alpha\,H_{s}$
+\end_inset
+
+, entonces el estado estacionario del sistema sería:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\rho_{est}=\,\frac{e^{-\beta\,\alpha\,H_{s}}}{Z}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por lo tanto, si 
+\begin_inset Formula $\alpha>1$
+\end_inset
+
+ tenemos que el sistema llega a un estado térmico de menor temperatura que
+ la temperatura del estado inicial y el reservorio.
+ Ya que 
+\begin_inset Formula $[V\,,\,H_{s}\,+\,H_{B}]\,\neq\,0$
+\end_inset
+
+ hay un trabajo externo, por lo tanto no se viola la segunda ley.
+ 
+\end_layout
+
+\begin_layout Standard
+Veamos un ejemplo con un qubit.
+ 
+\end_layout
+
+\begin_layout Standard
+Tenemos un qubit con hamiltoniano 
+\begin_inset Formula $H_{s}\,=\,\frac{h_{s}}{2}\sigma_{z}$
+\end_inset
+
+ inicialmente en estado térmico a tempeartura inversa 
+\begin_inset Formula $\beta$
+\end_inset
+
+ y un reservorio formado por qubits con hamiltoniano 
+\begin_inset Formula $H_{B}\,=\,\frac{\alpha h_{s}}{2}\sigma_{z}$
+\end_inset
+
+ con 
+\begin_inset Formula $\alpha>1$
+\end_inset
+
+.
+ Por lo tanto los qubits del reservorio tienen un gap más grande que el
+ sistema.
+ Elegimos la interacción 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+V\,=\,g\,(\sigma^{+}\otimes\sigma^{-}\,+\,\sigma^{-}\otimes\sigma^{+})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Con estos hamiltonianos e interacción se obtiene que 
+\begin_inset Formula $[V\,,\,\alpha H_{s}\,+\,H_{B}]=0$
+\end_inset
+
+, entonces 
+\begin_inset Formula $H_{0}=\,\alpha H_{s}$
+\end_inset
+
+.
+ Por lo tanto el estado estacionario del sistema es un estado térmico con
+ temperatura inversa 
+\begin_inset Formula $\beta\text{´}\,=\,\alpha\,\beta\geq\beta$
+\end_inset
+
+ , y el sistema se encuentra más frío que al inicio.
+ 
+\end_layout
+
+\begin_layout Standard
+Para calcular el calor que deja al sistema y el trabajo externo realizado
+ utilizamos las siguientes relaciones
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-2"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dE}{dt}\,=\,-\frac{1}{2}\langle[V\,,\,[V\,,\,H_{s}]]\rangle
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\frac{dQ}{dt}\,=\,\frac{1}{2}\langle[V\,,\,[V\,,\,H_{E}]]\rangle
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\dot{E}=\dot{Q}\,+\,\dot{W}_{ext}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se obtiene que 
+\begin_inset Formula $\dot{Q}\,=\,\alpha\,\dot{E}$
+\end_inset
+
+ y por lo tanto el trabajo externo es 
+\begin_inset Formula $\dot{W}_{ext}\,=\,\dot{Q}\,\frac{1-\alpha}{\alpha}$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\alpha=\frac{h_{B}}{h_{s}}$
+\end_inset
+
+ es igual al cociente entre el gap de los sistemas de reservorio y el gap
+ del sistema.
+ Para este sistema resulta entonces 
+\begin_inset Formula 
+\begin{equation}
+COP\,=\,\frac{\alpha}{1-\alpha}\,=\,\frac{h_{B}}{h_{s}-h_{B}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A continuación se muestra una simulación con un qubit para 
+\begin_inset Formula $\beta=0.25$
+\end_inset
+
+, 
+\begin_inset Formula $h_{s}=1$
+\end_inset
+
+ y 
+\begin_inset Formula $h_{B}=5$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/francomayo/Franco/Tesis/Cooling/rho.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /Users/francomayo/Franco/Tesis/Cooling/EWQ.png
+	scale 70
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para enfriar al cero absoluto el gap de los sistemas del reservorio debería
+ ser infinito, por lo tanto estamos en conconrdancia con la tercera ley.
+ 
+\end_layout
+
+\begin_layout Section*
+Trabajo para enfriar
+\end_layout
+
+\begin_layout Standard
+Calculamos analíticamente el trabajo externo que se requiere para enfriar
+ al qubit desde una temperatura 
+\begin_inset Formula $\beta$
+\end_inset
+
+ a una temperatura 
+\begin_inset Formula $\beta\text{´=\ensuremath{\alpha\,\beta} }$
+\end_inset
+
+.
+ El trabajo requerido es 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W\,=\,h\,(\alpha-1)\,(P_{gs}^{f}\,-\text{\,}P_{gs}^{\,i})\geq0
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Donde 
+\begin_inset Formula $P_{gs}^{i}$
+\end_inset
+
+ y 
+\begin_inset Formula $P_{gs}^{f}$
+\end_inset
+
+ son las poblaciones del groundstate antes y después de enfriar el sistema,
+ h es el gap del sistema.
+ 
+\end_layout
+
+\begin_layout Standard
+El trabajo puede reescribirse como:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W\,=\,\frac{h}{2}\,(\alpha-1)\,(\tanh(\beta\,\alpha\,h/2)\,-\,\tanh(\beta\,h/2))
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para un sistema cualquiera obtenemos:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+W_{ext}=(\alpha-1)\,Tr[H_{s}(\frac{e^{-\beta H_{s}}}{Z}\,-\,\frac{e^{-\alpha\beta H_{s}}}{Z_{\alpha}})]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+Enfriar un oscilador con un reservorio de qubits
+\end_layout
+
+\begin_layout Standard
+Todavía me falta leer sobre las trampas de iones, pero entiendo que la idea
+ de enfriamiento que buscamos se puede estudiar como enfriar un oscilador
+ armónico usando el método de interacciones repetidas con un reservorio
+ de qubits, que representarían los niveles electrónicos del ion.
+ 
+\end_layout
+
+\begin_layout Standard
+Entonces la idea es ver si usando este método se puede enfriar a un oscilador
+ armónico acoplándolo secuencialmente al reservorio térmico de qubits.
+ 
+\end_layout
+
+\begin_layout Standard
+Tenemos entonces un oscilador armónico de frecuencia 
+\begin_inset Formula $\omega$
+\end_inset
+
+ que se acopla al reservorio de qubits con gap 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ El hamiltoniano del oscilador es 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+H_{osc}\,=\,\omega(a^{\dagger}a\,+1/2)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y el hamiltoniano de los qubits es 
+\begin_inset Formula 
+\begin{equation}
+H_{B}\,=\,\frac{h}{2}\,\sigma_{z}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La interacción que elegimos para acoplar los sistemas es 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+V\,=\,g(a^{\dagger}\,\sigma^{-}\,+\,a\,\sigma^{+})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ahora vemos que 
+\begin_inset Formula 
+\begin{equation}
+[V,H_{s}\,+\,H_{B}]\,=\,(h\,-\,\omega)\,(a^{\dagger}\sigma^{-}-a\sigma^{+})
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Se ve claramente entonces que si elegimos 
+\begin_inset Formula 
+\begin{equation}
+H_{0}\,=\,h\,(a^{\dagger}a\,+1/2)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entonces se cumple la relación de conmutación 
+\begin_inset Formula $[V,H_{0}+H_{B}]=0$
+\end_inset
+
+ .
+ Definiendo 
+\begin_inset Formula $\alpha=\frac{h}{\omega}$
+\end_inset
+
+ el estado estacionario del oscilador es entonces
+\begin_inset Formula 
+\begin{equation}
+\rho_{est}\,=\,\frac{e^{-\beta\alpha H_{osc}}}{Z}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por lo tanto siempre que 
+\begin_inset Formula $h\geq\omega$
+\end_inset
+
+ el oscilador se encontrará a menor temperatura al finalizar el proceso.
+\end_layout
+
+\begin_layout Standard
+Escribimos la ecuación maestra para el oscilador:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{d\rho}{dt}\,=\,\gamma^{+}(a^{\dagger}\rho\,a\,-\,\frac{1}{2}\{aa^{\dagger},\rho\})\,+\,\gamma^{-}(a\rho a^{\dagger}\,-\,\frac{1}{2}\{a^{\dagger}a,\rho\})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+con 
+\begin_inset Formula $\gamma^{+}=g^{2}\frac{e^{-\beta h/2}}{Z}$
+\end_inset
+
+ y 
+\begin_inset Formula $\gamma^{-}=g^{2}\frac{e^{\beta h/2}}{Z}$
+\end_inset
+
+.
+ Vemos entonces que:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\text{\ensuremath{\frac{\gamma^{+}}{\gamma^{-}}\,=\,e^{-\beta h}\,=\,e^{-\alpha\beta\omega}}}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por lo tanto el sistema satisface balance detallado para temperatura 
+\begin_inset Formula $\alpha\beta$
+\end_inset
+
+ que es la temperatura de equilibrio.
+ 
+\end_layout
+
+\begin_layout Standard
+Partiendo de un estado diagonal se llega a la siguiente ecuación para las
+ poblaciones del oscilador:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\dot{P}_{n}\,=\,\gamma^{+}\,n\,P_{n-1}\,+\,\gamma^{-}\,(n+1)\,P_{n+1}\,-\,(\gamma^{+}(n+1)\,+\,\gamma^{-}n)P_{n}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Para el estado fundamental tenemos entonces:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\dot{P}_{0}\,=\,\gamma^{-}P_{1}\,-\,\gamma^{+}P_{0}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Suponiendo que la temperatura final es muy cercana a 0, podemos asumir que
+ sólamente van a estar poblados los primeros dos niveles, por lo tanto 
+\begin_inset Formula $P_{0}=1-P_{1}$
+\end_inset
+
+, obtenemos en esta aproximación:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P_{0}\,=\,1-e^{-\alpha\beta\omega}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Enfriamiento con quenches
+\end_layout
+
+\begin_layout Standard
+Lo que hablamos en la reunión de enfriar al qubit con un quench y después
+ con una evolución adiabática me parece que no va a funcionar, porque 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\frac{d\rho}{dt}\,=\,-i[H,\text{\ensuremath{\rho}}]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Y haciendo un quench para cambiar el gap el estado y los hamiltonianos conmutan,
+ entonces el estado no cambia.
+ (Si no me equivoco).
+ 
+\end_layout
+
+\begin_layout Standard
+Pero se me ocurrió otra forma de enfriar incluyendo un reservorio térmico
+ a la misma temperatura que el estado inicial, igual que en el caso de interacci
+ones repetidas.
+ En este caso no hace falta dar detalles sobre cómo es el reservorio, lo
+ importante es que cuando pongamos en contacto el sistema con el reservorio
+ termalice.
+ 
+\end_layout
+
+\begin_layout Standard
+Entonces el proceso para enfriar es el siguiente.
+ 
+\end_layout
+
+\begin_layout Standard
+Tenemos el qubit con hamiltoniano 
+\begin_inset Formula $H_{s}\,=\frac{h}{2}\sigma_{z}$
+\end_inset
+
+ y estado térmico 
+\begin_inset Formula $\rho=\frac{1}{Z}e^{-\beta H_{s}}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+1) Cambiamos el gap de 
+\begin_inset Formula $h$
+\end_inset
+
+ a 
+\begin_inset Formula $\alpha h$
+\end_inset
+
+.
+ Esto tiene un trabajo 
+\begin_inset Formula $W_{12}\,=\,\frac{h}{2}(\text{1\,-\,\ensuremath{\alpha)}\ensuremath{\tanh(\beta\,h/2)}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+2) Ponemos en contacto al sistema con el reservorio hasta que termaliza,
+ llegando al estado 
+\begin_inset Formula $\rho=\frac{1}{Z}e^{-\beta\,\alpha\,H_{s}}$
+\end_inset
+
+.
+ Entregando un calor 
+\begin_inset Formula $Q\text{\,=\,\ensuremath{\alpha\,\frac{h}{2}\,(\tanh(\beta h/2)\,-\,\tanh(\text{\ensuremath{\beta\,\alpha\,h/2}})).}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+3) Desconectamos el sistema del reservorio y cambiamos el gap nuevamente
+ a 
+\begin_inset Formula $h$
+\end_inset
+
+.
+ Esto tiene un trabajo 
+\begin_inset Formula $W_{34}\text{\,=\,\ensuremath{\frac{h}{2}(\alpha-1)\tanh(\beta\,\alpha\,h/2).} }$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Entonces terminamos con un sistema en estado térmico a temperatura 
+\begin_inset Formula $\beta\alpha$
+\end_inset
+
+ y hamiltoniano 
+\begin_inset Formula $H_{s}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+El trabajo total que lleva este proceso es 
+\begin_inset Formula 
+\[
+W\,=\,\frac{h}{2}\,(\alpha-1)\,(\tanh(\beta\,\alpha\,h/2)\,-\,\tanh(\beta\,h/2))
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Que es lo mismo que en en el caso de interacciones repetidas.
+ Y el COP también da igual que en el caso de interacciones repetidas.
+ Por lo tanto los dos procesos dan los mismos resultados.
+ 
+\end_layout
+
+\begin_layout Standard
+El segundo proceso me parece que es muy similar, sino igual, a lo que se
+ describe en 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-4"
+literal "false"
+
+\end_inset
+
+ en la sección 2 A, llamado Nernst Setup.
+ 
+\end_layout
+
+\begin_layout Subsection*
+Comparación con [3]
+\end_layout
+
+\begin_layout Standard
+En 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-4"
+literal "false"
+
+\end_inset
+
+ estudian Dynamic cooling, donde tienen un sistema y un reservorio térmico
+ que inicialmente no interactúan, luego los acoplan con una interacción
+ 
+\begin_inset Formula $V$
+\end_inset
+
+ durante un tiempo 
+\begin_inset Formula $\tau$
+\end_inset
+
+, de modo que los dos sistemas evolucionen de manera unitaria (global).
+ Al finalizar este proceso llegan a un estado que en general no es de equilibrio.
+ Hacen como un único paso de interacciones repetidas, por lo tanto llegan
+ a un estado que no es de equilibrio.
+ La dinámica del sistema + reservorio es unitaria, por lo que me parece
+ que nuestro caso es más general, además de que llegamos siempre a estados
+ térmicos.
+ Al estar fuera del equilibrio ellos estudian el enfriamiento en función
+ al aumento de la población del groundstate, mientras que en nuestro caso
+ estamos hablando de temperaturas bien definidas.
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-1"
+
+\end_inset
+
+ F.
+ Barra, Phys.
+ Rev.
+ Lett.
+ 122, 210601 (2019) 2
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-2"
+
+\end_inset
+
+G.
+ De Chiara, G.
+ Landi, A.
+ Hewgill, B.
+ Reid, A.
+ Ferraro, A.
+ J.
+ Roncaglia, and M.
+ Antezza, New J.
+ Phys.
+ 20, 113024 (2018).
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-4"
+
+\end_inset
+
+Armen E.
+ Allahverdyan, Karen V.
+ Hovhannisyan, Dominik Janzing, and Guenter Mahler Phys.
+ Rev.
+ E 84, 041109
+\end_layout
+
+\end_body
+\end_document

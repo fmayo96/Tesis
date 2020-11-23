@@ -5,7 +5,8 @@
 #include "matrixoperations.h"
 #include "RK4.h"
 #include "propagators.h"
-int Open_evolution(double complex *state, double complex *hamiltonian, double complex *bath_state, double complex *bath_hamiltonian, double complex *interaction, int dim, double tf, double dt)
+#include "energy.h"
+void Open_evolution(double complex *state, double complex *hamiltonian, double complex *bath_state, double complex *bath_hamiltonian, double complex *interaction, int dim, double tf, double dt)
 {
     int N = (int)(tf/dt), step;
     double complex *propagator, *dissipator;
@@ -17,9 +18,8 @@ int Open_evolution(double complex *state, double complex *hamiltonian, double co
     }
     free(propagator);
     free(dissipator);
-    return 0;
 }
-int Driven_evolution(double complex *state, double complex *hamiltonian, double complex *bath_state, double complex *bath_hamiltonian, double complex *interaction, int dim, double tf, double dt)
+void Driven_evolution(double complex *state, double complex *hamiltonian, double complex *bath_state, double complex *bath_hamiltonian, double complex *interaction, int dim, double tf, double dt)
 {
     int N = (int)(tf/dt), step;
     double complex *propagator, *dissipator;
@@ -32,9 +32,8 @@ int Driven_evolution(double complex *state, double complex *hamiltonian, double 
     }
     free(propagator);
     free(dissipator);
-    return 0;
 }
-int Closed_evolution(double complex *state, double complex *hamiltonian, int dim, double tf, double dt)
+void Closed_evolution(double complex *state, double complex *hamiltonian, int dim, double tf, double dt)
 {
     int N = (int)(tf/dt), step;
     double complex *propagator;
@@ -44,5 +43,4 @@ int Closed_evolution(double complex *state, double complex *hamiltonian, int dim
         RK4_closed(propagator, state, hamiltonian, dt, dim, step);
     }
     free(propagator);
-    return 0;
 }

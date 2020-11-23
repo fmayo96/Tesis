@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <complex.h>
-int dot(double complex *C, double complex *A, double complex *B, int dim)
+void dot(double complex *C, double complex *A, double complex *B, int dim)
 {
     int i, j, k;
     for(i = 0; i < dim*dim; i++)
@@ -19,9 +19,8 @@ int dot(double complex *C, double complex *A, double complex *B, int dim)
             }
         }
     }
-    return 0;
 }
-int kron(double complex *C, double complex *A, double complex *B, int dim)
+void kron(double complex *C, double complex *A, double complex *B, int dim)
 {
     int i, j, k, l;
     for(i = 0; i < dim; i++)
@@ -37,10 +36,8 @@ int kron(double complex *C, double complex *A, double complex *B, int dim)
 			}
 		}
 	}
-
-    return 0;
 }
-int trace(double complex *A, int dim)
+double trace(double complex *A, int dim)
 {
     int i;
     double trace = 0;
@@ -48,9 +45,9 @@ int trace(double complex *A, int dim)
         {
             trace += *(A + i * dim + i);
         }
-    return trace;
+    return creal(trace);
 }
-int partial_trace(double complex *m, double complex *M, int dim)//M = kron(A,B)
+void partial_trace(double complex *m, double complex *M, int dim)//M = kron(A,B)
 {
     int i, j, k;
     for(i = 0; i < dim*dim; i++)
@@ -67,10 +64,8 @@ int partial_trace(double complex *m, double complex *M, int dim)//M = kron(A,B)
             }         
         }
     } 
-
-    return 0;
 }
-int commutator(double complex *C, double complex *A, double complex *B, int dim)
+void commutator(double complex *C, double complex *A, double complex *B, int dim)
 {
     int i;
     double complex *D, *E;
@@ -84,5 +79,4 @@ int commutator(double complex *C, double complex *A, double complex *B, int dim)
     }
 free(D);
 free(E);
-    return 0;
 }
